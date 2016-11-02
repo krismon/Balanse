@@ -48,6 +48,38 @@ namespace Balanse
             }
 
         }
+        public void DeleteQuery(string Table, string Id)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection("data source=C:\\BalanseData\\Balanse"))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+                    sh.Execute("Delete from " + Table + " WHERE ID = '" + Id + "';");
+                    conn.Close();
+
+                }
+            }
+        }
+        public void ExecuteSQL(string ExecuteScript)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection("data source=C:\\BalanseData\\Balanse"))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+                    sh.Execute(ExecuteScript + ";");
+                    conn.Close();
+
+                }
+            }
+        }
         public int InsertSales(int ReportNo, DateTime SalesDate, string Branch, double TotalSales, double Cash, double Charge, double CreditCard, double CreditCard1,
             double CreditCard2, double CreditCard3, double CreditCard4, double CreditCard5, double CreditCard6, double CreditCard7,
             double CreditCard8, double CreditCard9, double CreditCard10, double Check, double GovCheck, double PerCheck, double GiftCheck, double Coupon, double TaxCert, double PO, string Comments, DateTime RecDt, string EncodedBy)
@@ -153,7 +185,36 @@ namespace Balanse
             int DepositID = InsertQuery("DEPOSIT_SUMMARY", InsertDepositSummParameters);
             return DepositID;
         }
-    
+
+        public int IntertPO_Payment(int po_id, DateTime payment_date, string payment_type, decimal payment_amount, string encoded_by)
+        {
+            Dictionary<string, object> InsertPaymentParameters = new Dictionary<string, object>();
+            InsertPaymentParameters.Add("po_id", po_id);
+            InsertPaymentParameters.Add("PAYMENT_DATE", payment_date);
+            InsertPaymentParameters.Add("PAYMENT_TYPE", payment_type);
+            InsertPaymentParameters.Add("PAID_AMOUNT", payment_amount);
+            InsertPaymentParameters.Add("ENCODED_BY", encoded_by);
+            int PAYMENT_ID = InsertQuery("PO_PAYMENTS", InsertPaymentParameters);
+            return PAYMENT_ID;
+        }
+
+        public void DropPayment(int po_id)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection("data source=C:\\BalanseData\\Balanse"))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+                    sh.Execute("Delete from PO_PAYMENTS"  + " WHERE PO_ID = '" + po_id + "';");
+                    conn.Close();
+
+                }
+            }
+        }
+
     }
 }
 

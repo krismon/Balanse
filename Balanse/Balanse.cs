@@ -612,21 +612,21 @@ namespace Balanse
 
             BalanseConn POConn = new BalanseConn();
             DataTable POItems = POConn.SelectQuery(@"SELECT
+                                               A.ROWID,
                                                A.BRANCH, 
                                                A.PO_DATE,
                                                A.CUSTOMER_NAME, 
                                                A.PO_AMOUNT,
                                                A.PO_STATUS,
-                                               B.PAYMENT_TYPE,
-                                               B.PAID_AMOUNT,
-                                               B.PAYMENT_DATE
+                                               SUM(B.PAID_AMOUNT)
                                                FROM PURCHASE_ORDERS A LEFT JOIN PO_PAYMENTS B
-                                               ON 
-                                                    A.PO_DATE = B.PO_DATE 
-                                                    AND A.BRANCH = B.BRANCH 
-                                                    AND A.CUSTOMER_NAME = B.CUSTOMER_NAME 
-                                                    AND A.PO_AMOUNT = B.PO_AMOUNT" +
-                                                     whereClause
+                                               ON
+                                                    a.rowid = b.po_id" +  
+                                                    //A.PO_DATE = B.PO_DATE 
+                                                    //AND A.BRANCH = B.BRANCH 
+                                                    //AND A.CUSTOMER_NAME = B.CUSTOMER_NAME 
+                                                    //AND A.PO_AMOUNT = B.PO_AMOUNT" +
+                                                    whereClause
                                                );
             
             if (POItems.Rows.Count < 1)
@@ -638,47 +638,44 @@ namespace Balanse
             else
             foreach (DataRow row in POItems.Rows)
                 {
-                    //MessageBox.Show("success");
-                    string Branch = row[0].ToString();
-                    string PO_Date = DateTime.Parse(row[1].ToString()).ToString("MM/dd/yyyy");
-                    string CustomerName = row[2].ToString();
+                    string rowid = row[0].ToString();
+                    string Branch = row[1].ToString();
+                    string PO_Date = DateTime.Parse(row[2].ToString()).ToString("MM/dd/yyyy");
+                    string CustomerName = row[3].ToString();
                     
-                    string POAmount = Decimal.Parse(row[3].ToString()).ToString("#,##0.00");
-                    string POStatus = row[4].ToString();
+                    decimal POAmount = Decimal.Parse(row[4].ToString());
+                    string POStatus = row[5].ToString();
                     
                     string PayType = "";
-                    if (row[5]!=DBNull.Value)
+                    if (row[6]!=DBNull.Value)
                     {
-                        PayType = row[5].ToString();
+                        PayType = row[6].ToString();
                     }
                     else PayType = "";
                     
-                    string PayAmount = "";
+                    decimal PayAmount = 0;
                     if (row[6] != DBNull.Value)
                     {
-                       MessageBox.Show(row[6].ToString());
-                       PayAmount = Decimal.Parse(row[6].ToString()).ToString("#,##0.00");
+                       PayAmount = Decimal.Parse(row[6].ToString());
                     }
-                    else PayAmount = "";
 
-                    string PayDate="";
-                    if (row[7] != DBNull.Value)
+                    /*string PayDate="";
+                    if (row[8] != DBNull.Value)
                     {
-                        PayDate = DateTime.Parse(row[7].ToString()).ToString("MM/dd/yyyy");
+                        PayDate = DateTime.Parse(row[8].ToString()).ToString("MM/dd/yyyy");
                     }
 
-                    else PayDate = "";
+                    else PayDate = "";*/
                    
 
                     PO_DGV_POItems.Rows.Add(
+                        rowid,
                         Branch,
                         PO_Date,
                         CustomerName,
-                        POAmount,
+                        POAmount.ToString("#,##0.00"),
                         POStatus,
-                        PayType,
-                        PayAmount,
-                        PayDate);                     
+                        (POAmount-PayAmount).ToString("#,##0.00"));                     
                 }
             return IsSuccess;          
             
@@ -1806,7 +1803,7 @@ namespace Balanse
 
         private void PO_DGV_POItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            PO_Payment_Subform POPayment = new PO_Payment_Subform(PO_DGV_POItems.Rows[e.RowIndex]);
+            PO_Payment_Subform POPayment = new PO_Payment_Subform(PO_DGV_POItems.Rows[e.RowIndex], ED_L_User.Text);
             POPayment.ShowDialog();
         }
 
