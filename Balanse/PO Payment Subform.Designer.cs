@@ -48,7 +48,7 @@
             this.POPay_CB_Deposit = new System.Windows.Forms.CheckBox();
             this.POPay_DD_PayType = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.POPay_But_PODate = new System.Windows.Forms.DateTimePicker();
+            this.POPay_TB_PODate = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -87,9 +87,9 @@
             this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(77, 270);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 18);
+            this.label5.Size = new System.Drawing.Size(99, 18);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Payment Amount:";
+            this.label5.Text = "Paid Amount:";
             // 
             // label6
             // 
@@ -231,9 +231,8 @@
             this.POPay_DD_PayType.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.POPay_DD_PayType.FormattingEnabled = true;
             this.POPay_DD_PayType.Items.AddRange(new object[] {
-            "Unpaid",
-            "Partially Paid",
-            "Paid"});
+            "Cash",
+            "Check"});
             this.POPay_DD_PayType.Location = new System.Drawing.Point(221, 220);
             this.POPay_DD_PayType.Name = "POPay_DD_PayType";
             this.POPay_DD_PayType.Size = new System.Drawing.Size(174, 25);
@@ -249,23 +248,21 @@
             this.label2.TabIndex = 22;
             this.label2.Text = "Payment Type:";
             // 
-            // POPay_But_PODate
+            // POPay_TB_PODate
             // 
-            this.POPay_But_PODate.CustomFormat = "MM/dd/yyyy";
-            this.POPay_But_PODate.Enabled = false;
-            this.POPay_But_PODate.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.POPay_But_PODate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.POPay_But_PODate.Location = new System.Drawing.Point(221, 76);
-            this.POPay_But_PODate.Name = "POPay_But_PODate";
-            this.POPay_But_PODate.Size = new System.Drawing.Size(174, 25);
-            this.POPay_But_PODate.TabIndex = 24;
+            this.POPay_TB_PODate.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.POPay_TB_PODate.Location = new System.Drawing.Point(221, 78);
+            this.POPay_TB_PODate.Name = "POPay_TB_PODate";
+            this.POPay_TB_PODate.ReadOnly = true;
+            this.POPay_TB_PODate.Size = new System.Drawing.Size(174, 25);
+            this.POPay_TB_PODate.TabIndex = 24;
             // 
             // PO_Payment_Subform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 675);
-            this.Controls.Add(this.POPay_But_PODate);
+            this.Controls.Add(this.POPay_TB_PODate);
             this.Controls.Add(this.POPay_DD_PayType);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.POPay_CB_Deposit);
@@ -315,6 +312,6 @@
         private System.Windows.Forms.CheckBox POPay_CB_Deposit;
         private System.Windows.Forms.ComboBox POPay_DD_PayType;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker POPay_But_PODate;
+        private System.Windows.Forms.TextBox POPay_TB_PODate;
     }
 }

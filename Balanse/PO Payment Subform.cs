@@ -19,10 +19,12 @@ namespace Balanse
         public PO_Payment_Subform(DataGridViewRow Info)
         {
             InitializeComponent();
-            this.POPay_TB_CustName.Text = Info.Cells[0].Value.ToString();
-            this.POPay_TB_POAmt.Text = Info.Cells[1].Value.ToString();
-            string PayType = Info.Cells[3].Value.ToString();
-            string Status = Info.Cells[2].Value.ToString();
+            this.POPay_TB_CustName.Text = Info.Cells[2].Value.ToString();
+            this.POPay_TB_POAmt.Text = Info.Cells[3].Value.ToString();
+            string PayType = Info.Cells[5].Value.ToString();
+            string Status = Info.Cells[4].Value.ToString();
+            this.POPay_TB_Branch.Text = Info.Cells[0].Value.ToString();
+            this.POPay_TB_PODate.Text = Info.Cells[1].Value.ToString();
             for(int i=0;i< this.POPay_DD_PayType.Items.Count; i++)
             {
                 if (this.POPay_DD_PayType.Items[i].ToString().ToUpper().Equals(PayType.ToUpper()))

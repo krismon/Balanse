@@ -601,7 +601,9 @@ namespace Balanse
             }
 
             BalanseConn POConn = new BalanseConn();
-            DataTable POItems = POConn.SelectQuery(@"SELECT 
+            DataTable POItems = POConn.SelectQuery(@"SELECT
+                                               A.BRANCH, 
+                                               A.PO_DATE,
                                                A.CUSTOMER_NAME, 
                                                A.PO_AMOUNT,
                                                A.PO_STATUS,
@@ -627,37 +629,40 @@ namespace Balanse
             foreach (DataRow row in POItems.Rows)
                 {
                     //MessageBox.Show("success");
-                    string CustomerName = row[0].ToString();
+                    string Branch = row[0].ToString();
+                    string PO_Date = DateTime.Parse(row[1].ToString()).ToString("MM/dd/yyyy");
+                    string CustomerName = row[2].ToString();
                     
-                    string POAmount = Decimal.Parse(row[1].ToString()).ToString("#,##0.00");
-                    string POStatus = row[2].ToString();
+                    string POAmount = Decimal.Parse(row[3].ToString()).ToString("#,##0.00");
+                    string POStatus = row[4].ToString();
                     
                     string PayType = "";
-                    if (row[3]!=DBNull.Value)
+                    if (row[5]!=DBNull.Value)
                     {
-                        PayType = row[3].ToString();
+                        PayType = row[5].ToString();
                     }
                     else PayType = "";
                     
                     string PayAmount = "";
-                    if (row[4] != DBNull.Value)
+                    if (row[6] != DBNull.Value)
                     {
-                       MessageBox.Show(row[4].ToString());
-                       PayAmount = Decimal.Parse(row[4].ToString()).ToString("#,##0.00");
+                       MessageBox.Show(row[6].ToString());
+                       PayAmount = Decimal.Parse(row[6].ToString()).ToString("#,##0.00");
                     }
                     else PayAmount = "";
 
                     string PayDate="";
-                    if (row[5] != DBNull.Value)
+                    if (row[7] != DBNull.Value)
                     {
-                        PayDate = DateTime.Parse(row[5].ToString()).ToString("MM/dd/yyyy");
+                        PayDate = DateTime.Parse(row[7].ToString()).ToString("MM/dd/yyyy");
                     }
 
                     else PayDate = "";
-
-
+                   
 
                     PO_DGV_POItems.Rows.Add(
+                        Branch,
+                        PO_Date,
                         CustomerName,
                         POAmount,
                         POStatus,
