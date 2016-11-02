@@ -19,6 +19,8 @@ namespace Balanse
             S_L_User.Text = name;
             ED_L_User.Text = name;
             PO_L_User.Text = name;
+            Su_L_User.Text = name;
+            An_L_User.Text = name;
             
             BalanseConn conn = new BalanseConn();
             DateTime DATE = S_But_Date.Value;
@@ -39,43 +41,51 @@ namespace Balanse
             ED_DD_Branch.DataSource = new BindingSource(test, null);
             PO_DD_Branch.DataSource = new BindingSource(test, null);
             Su_DD_Branch.DataSource = new BindingSource(test, null);
+            An_DD_Branch.DataSource = new BindingSource(test, null);
             S_DD_Branch.DisplayMember = "Value";
             ED_DD_Branch.DisplayMember = "Value";
             PO_DD_Branch.DisplayMember = "Value";
             Su_DD_Branch.DisplayMember = "Value";
+            An_DD_Branch.DisplayMember = "Value";
             S_DD_Branch.ValueMember = "Key";
             ED_DD_Branch.ValueMember = "Key";
             PO_DD_Branch.ValueMember = "Key";
             Su_DD_Branch.ValueMember = "Key";
+            An_DD_Branch.ValueMember = "Key";
 
-            DataTable mon = conn.SelectQuery("select distinct strftime('%m', date) from sales");
-            Dictionary<String, String> Su_MonSelection = new Dictionary<string, string>();
+            //month drop down
+            DataTable mon = conn.SelectQuery("select distinct case strftime('%m', date) when '01' then 'JAN' when '02' then 'FEB' when '03' then 'MAR' when '04' then 'APR' when '05' then 'MAY' when '06' then 'JUN' when '07' then 'JUL' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' end as Month from sales order by strftime('%m', date) asc");
+            Dictionary<String, String> MonSelection = new Dictionary<string, string>();
             int j = 0;
             foreach (DataRow row in mon.Rows)
             {
-                Su_MonSelection.Add(j.ToString(), row[0].ToString());
+                MonSelection.Add(j.ToString(), row[0].ToString());
                 j++;
             }
-            Su_DD_Month.DataSource = new BindingSource(Su_MonSelection, null);
+            Su_DD_Month.DataSource = new BindingSource(MonSelection, null);
+            An_DD_Month.DataSource = new BindingSource(MonSelection, null);
             Su_DD_Month.DisplayMember = "Value";
+            An_DD_Month.DisplayMember = "Value";
             Su_DD_Month.ValueMember = "Key";
-
+            An_DD_Month.ValueMember = "Key";
+            //year drop down
             DataTable year = conn.SelectQuery("select distinct strftime('%Y', date) from sales");
-            Dictionary<String, String> Su_YrSelection = new Dictionary<string, string>();
+            Dictionary<String, String> YrSelection = new Dictionary<string, string>();
             int k = 0;
             foreach (DataRow row in year.Rows)
             {
-                Su_YrSelection.Add(k.ToString(), row[0].ToString());
+                YrSelection.Add(k.ToString(), row[0].ToString());
                 k++;
             }
-            Su_DD_Year.DataSource = new BindingSource(Su_YrSelection, null);
+            Su_DD_Year.DataSource = new BindingSource(YrSelection, null);
+            An_DD_Year.DataSource = new BindingSource(YrSelection, null);
             Su_DD_Year.DisplayMember = "Value";
+            An_DD_Year.DisplayMember = "Value";
             Su_DD_Year.ValueMember = "Key";
+            An_DD_Year.ValueMember = "Key";
 
 
-        }
-        
-        
+        }    
 
         //to check if textbox is empty
         public Boolean IsEmpty(string item)
@@ -1789,13 +1799,6 @@ namespace Balanse
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            BalanseConn SummaryConn = new BalanseConn();
-            DataTable items = SummaryConn.SelectQuery("SELECT  ");
-
-        }
-
         private void PO_But_Reset_Click(object sender, EventArgs e)
         {
             ResetPOSearch();
@@ -1817,6 +1820,23 @@ namespace Balanse
             {
                 PO_But_Date.Enabled = false;
             }
+        }
+
+        private void Su_CB_All_CheckedChanged(object sender, EventArgs e)
+        {
+            string searchquery = "";
+            
+        }
+
+        private void Su_But_Search_Click(object sender, EventArgs e)
+        {
+            BalanseConn SummaryConn = new BalanseConn();
+            if (Su_CB_All.Checked)
+            {
+                DataTable items = SummaryConn.SelectQuery(@"select strftime('%d',date), branch, sum(total_sales), sum(cash), sum(charge), sum(credit_card), sum('check'), sum(gift_check), sum(coupon), sum(tax_cert),sum(po) from sales where strftime('%Y',date)='"  +Su_DD_Year.Text+ "' and case strftime('%m', date) when '01' then 'JAN' when '02' then 'FEB' when '03' then 'MAR' when '04' then 'APR' when '05' then 'MAY' when '06' then 'JUN' when '07' then 'JUL' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END ='"+Su_DD_Month.Text+"' group by strftime('%D',date)");
+                MessageBox.Show("select strftime('%d',date), branch, sum(total_sales), sum(cash), sum(charge), sum(credit_card), sum('check'), sum(gift_check), sum(coupon), sum(tax_cert),sum(po) from sales where strftime('%Y',date)= " + Su_DD_Year.Text + " and case strftime('%m', date) when '01' then 'JAN' when '02' then 'FEB' when '03' then 'MAR' when '04' then 'APR' when '05' then 'MAY' when '06' then 'JUN' when '07' then 'JUL' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END = " + Su_DD_Month.Text + " group by strftime('%D',date)");
+            }
+            
         }
     }
 }

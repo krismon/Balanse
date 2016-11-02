@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Tab_Balanse = new System.Windows.Forms.TabControl();
             this.Tab_Sales = new System.Windows.Forms.TabPage();
             this.S_L_User = new System.Windows.Forms.Label();
@@ -168,27 +168,14 @@
             this.label25 = new System.Windows.Forms.Label();
             this.PO_But_Date = new System.Windows.Forms.DateTimePicker();
             this.label26 = new System.Windows.Forms.Label();
-            this.SummaryReport = new System.Windows.Forms.TabPage();
-            this.label47 = new System.Windows.Forms.Label();
-            this.Su_DD_Report = new System.Windows.Forms.ComboBox();
+            this.Tab_MonthlySales = new System.Windows.Forms.TabPage();
             this.Su_DGV_SalesDep = new System.Windows.Forms.DataGridView();
-            this.SalesDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CashSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Charge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreditCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Check = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GiftCheck = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TaxCert = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Coupon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label46 = new System.Windows.Forms.Label();
             this.Su_DD_Month = new System.Windows.Forms.ComboBox();
             this.Su_DD_Year = new System.Windows.Forms.ComboBox();
             this.Su_CB_All = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Su_But_Reset = new System.Windows.Forms.Button();
+            this.Su_But_Search = new System.Windows.Forms.Button();
             this.Su_DD_Branch = new System.Windows.Forms.ComboBox();
             this.Su_L_User = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
@@ -204,13 +191,37 @@
             this.PaidAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PaymentDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AddEditPayment = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label47 = new System.Windows.Forms.Label();
+            this.An_DD_Month = new System.Windows.Forms.ComboBox();
+            this.An_DD_Year = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.An_But_Reset = new System.Windows.Forms.Button();
+            this.An_But_Search = new System.Windows.Forms.Button();
+            this.An_DD_Branch = new System.Windows.Forms.ComboBox();
+            this.An_L_User = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.SalesDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CashSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Charge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreditCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Check = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GiftCheck = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaxCert = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Coupon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Comments = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tab_Balanse.SuspendLayout();
             this.Tab_Sales.SuspendLayout();
             this.Tab_AddExpDep.SuspendLayout();
             this.Tab_AddPOPayment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PO_DGV_POItems)).BeginInit();
-            this.SummaryReport.SuspendLayout();
+            this.Tab_MonthlySales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Su_DGV_SalesDep)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tab_Balanse
@@ -221,7 +232,8 @@
             this.Tab_Balanse.Controls.Add(this.Tab_Sales);
             this.Tab_Balanse.Controls.Add(this.Tab_AddExpDep);
             this.Tab_Balanse.Controls.Add(this.Tab_AddPOPayment);
-            this.Tab_Balanse.Controls.Add(this.SummaryReport);
+            this.Tab_Balanse.Controls.Add(this.Tab_MonthlySales);
+            this.Tab_Balanse.Controls.Add(this.tabPage1);
             this.Tab_Balanse.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tab_Balanse.Location = new System.Drawing.Point(0, 12);
             this.Tab_Balanse.Name = "Tab_Balanse";
@@ -1777,54 +1789,28 @@
             this.label26.TabIndex = 166;
             this.label26.Text = "PO Date:";
             // 
-            // SummaryReport
+            // Tab_MonthlySales
             // 
-            this.SummaryReport.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.SummaryReport.Controls.Add(this.label47);
-            this.SummaryReport.Controls.Add(this.Su_DD_Report);
-            this.SummaryReport.Controls.Add(this.Su_DGV_SalesDep);
-            this.SummaryReport.Controls.Add(this.label46);
-            this.SummaryReport.Controls.Add(this.Su_DD_Month);
-            this.SummaryReport.Controls.Add(this.Su_DD_Year);
-            this.SummaryReport.Controls.Add(this.Su_CB_All);
-            this.SummaryReport.Controls.Add(this.button2);
-            this.SummaryReport.Controls.Add(this.button1);
-            this.SummaryReport.Controls.Add(this.Su_DD_Branch);
-            this.SummaryReport.Controls.Add(this.Su_L_User);
-            this.SummaryReport.Controls.Add(this.label44);
-            this.SummaryReport.Controls.Add(this.label43);
-            this.SummaryReport.Controls.Add(this.label42);
-            this.SummaryReport.Controls.Add(this.label41);
-            this.SummaryReport.Location = new System.Drawing.Point(4, 26);
-            this.SummaryReport.Name = "SummaryReport";
-            this.SummaryReport.Padding = new System.Windows.Forms.Padding(3);
-            this.SummaryReport.Size = new System.Drawing.Size(1506, 986);
-            this.SummaryReport.TabIndex = 3;
-            this.SummaryReport.Text = "Summary";
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(1051, 64);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(61, 18);
-            this.label47.TabIndex = 16;
-            this.label47.Text = "Report:";
-            // 
-            // Su_DD_Report
-            // 
-            this.Su_DD_Report.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.Su_DD_Report.FormattingEnabled = true;
-            this.Su_DD_Report.Items.AddRange(new object[] {
-            "Sales",
-            "Deposit",
-            "Expenses",
-            "Totals"});
-            this.Su_DD_Report.Location = new System.Drawing.Point(1125, 60);
-            this.Su_DD_Report.Name = "Su_DD_Report";
-            this.Su_DD_Report.Size = new System.Drawing.Size(134, 25);
-            this.Su_DD_Report.TabIndex = 15;
+            this.Tab_MonthlySales.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Tab_MonthlySales.Controls.Add(this.Su_DGV_SalesDep);
+            this.Tab_MonthlySales.Controls.Add(this.label46);
+            this.Tab_MonthlySales.Controls.Add(this.Su_DD_Month);
+            this.Tab_MonthlySales.Controls.Add(this.Su_DD_Year);
+            this.Tab_MonthlySales.Controls.Add(this.Su_CB_All);
+            this.Tab_MonthlySales.Controls.Add(this.Su_But_Reset);
+            this.Tab_MonthlySales.Controls.Add(this.Su_But_Search);
+            this.Tab_MonthlySales.Controls.Add(this.Su_DD_Branch);
+            this.Tab_MonthlySales.Controls.Add(this.Su_L_User);
+            this.Tab_MonthlySales.Controls.Add(this.label44);
+            this.Tab_MonthlySales.Controls.Add(this.label43);
+            this.Tab_MonthlySales.Controls.Add(this.label42);
+            this.Tab_MonthlySales.Controls.Add(this.label41);
+            this.Tab_MonthlySales.Location = new System.Drawing.Point(4, 26);
+            this.Tab_MonthlySales.Name = "Tab_MonthlySales";
+            this.Tab_MonthlySales.Padding = new System.Windows.Forms.Padding(3);
+            this.Tab_MonthlySales.Size = new System.Drawing.Size(1506, 986);
+            this.Tab_MonthlySales.TabIndex = 3;
+            this.Tab_MonthlySales.Text = "Monthly Sales";
             // 
             // Su_DGV_SalesDep
             // 
@@ -1847,91 +1833,14 @@
             this.Su_DGV_SalesDep.Name = "Su_DGV_SalesDep";
             this.Su_DGV_SalesDep.ReadOnly = true;
             this.Su_DGV_SalesDep.RowTemplate.Height = 24;
-            this.Su_DGV_SalesDep.Size = new System.Drawing.Size(1486, 894);
+            this.Su_DGV_SalesDep.Size = new System.Drawing.Size(1503, 894);
             this.Su_DGV_SalesDep.TabIndex = 14;
-            // 
-            // SalesDate
-            // 
-            this.SalesDate.HeaderText = "Day";
-            this.SalesDate.Name = "SalesDate";
-            this.SalesDate.ReadOnly = true;
-            this.SalesDate.Width = 50;
-            // 
-            // TotalSales
-            // 
-            this.TotalSales.HeaderText = "Total Sales";
-            this.TotalSales.Name = "TotalSales";
-            this.TotalSales.ReadOnly = true;
-            this.TotalSales.Width = 180;
-            // 
-            // CashSales
-            // 
-            this.CashSales.HeaderText = "Cash Sales";
-            this.CashSales.Name = "CashSales";
-            this.CashSales.ReadOnly = true;
-            this.CashSales.Width = 150;
-            // 
-            // Charge
-            // 
-            this.Charge.HeaderText = "Charge";
-            this.Charge.Name = "Charge";
-            this.Charge.ReadOnly = true;
-            this.Charge.Width = 180;
-            // 
-            // CreditCard
-            // 
-            this.CreditCard.HeaderText = "Credit Card";
-            this.CreditCard.Name = "CreditCard";
-            this.CreditCard.ReadOnly = true;
-            this.CreditCard.Width = 150;
-            // 
-            // Check
-            // 
-            this.Check.HeaderText = "Check";
-            this.Check.Name = "Check";
-            this.Check.ReadOnly = true;
-            this.Check.Width = 150;
-            // 
-            // GiftCheck
-            // 
-            this.GiftCheck.HeaderText = "Gift Check";
-            this.GiftCheck.Name = "GiftCheck";
-            this.GiftCheck.ReadOnly = true;
-            this.GiftCheck.Width = 80;
-            // 
-            // TaxCert
-            // 
-            this.TaxCert.HeaderText = "Tax Cert";
-            this.TaxCert.Name = "TaxCert";
-            this.TaxCert.ReadOnly = true;
-            this.TaxCert.Width = 80;
-            // 
-            // Coupon
-            // 
-            this.Coupon.HeaderText = "Coupon";
-            this.Coupon.Name = "Coupon";
-            this.Coupon.ReadOnly = true;
-            this.Coupon.Width = 80;
-            // 
-            // PO
-            // 
-            this.PO.HeaderText = "PO";
-            this.PO.Name = "PO";
-            this.PO.ReadOnly = true;
-            this.PO.Width = 150;
-            // 
-            // Comments
-            // 
-            this.Comments.HeaderText = "Comments";
-            this.Comments.Name = "Comments";
-            this.Comments.ReadOnly = true;
-            this.Comments.Width = 191;
             // 
             // label46
             // 
             this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(440, 63);
+            this.label46.Location = new System.Drawing.Point(564, 66);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(57, 18);
             this.label46.TabIndex = 13;
@@ -1941,7 +1850,7 @@
             // 
             this.Su_DD_Month.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Su_DD_Month.FormattingEnabled = true;
-            this.Su_DD_Month.Location = new System.Drawing.Point(519, 60);
+            this.Su_DD_Month.Location = new System.Drawing.Point(643, 63);
             this.Su_DD_Month.Name = "Su_DD_Month";
             this.Su_DD_Month.Size = new System.Drawing.Size(134, 25);
             this.Su_DD_Month.TabIndex = 12;
@@ -1950,7 +1859,7 @@
             // 
             this.Su_DD_Year.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Su_DD_Year.FormattingEnabled = true;
-            this.Su_DD_Year.Location = new System.Drawing.Point(268, 60);
+            this.Su_DD_Year.Location = new System.Drawing.Point(392, 63);
             this.Su_DD_Year.Name = "Su_DD_Year";
             this.Su_DD_Year.Size = new System.Drawing.Size(134, 25);
             this.Su_DD_Year.TabIndex = 10;
@@ -1958,37 +1867,38 @@
             // Su_CB_All
             // 
             this.Su_CB_All.AutoSize = true;
-            this.Su_CB_All.Location = new System.Drawing.Point(894, 92);
+            this.Su_CB_All.Location = new System.Drawing.Point(1018, 95);
             this.Su_CB_All.Name = "Su_CB_All";
             this.Su_CB_All.Size = new System.Drawing.Size(124, 21);
             this.Su_CB_All.TabIndex = 9;
             this.Su_CB_All.Text = "All Branches";
             this.Su_CB_All.UseVisualStyleBackColor = true;
+            this.Su_CB_All.CheckedChanged += new System.EventHandler(this.Su_CB_All_CheckedChanged);
             // 
-            // button2
+            // Su_But_Reset
             // 
-            this.button2.Location = new System.Drawing.Point(791, 138);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 36);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Reset";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Su_But_Reset.Location = new System.Drawing.Point(785, 131);
+            this.Su_But_Reset.Name = "Su_But_Reset";
+            this.Su_But_Reset.Size = new System.Drawing.Size(123, 36);
+            this.Su_But_Reset.TabIndex = 8;
+            this.Su_But_Reset.Text = "Reset";
+            this.Su_But_Reset.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // Su_But_Search
             // 
-            this.button1.Location = new System.Drawing.Point(658, 138);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 36);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Su_But_Search.Location = new System.Drawing.Point(652, 131);
+            this.Su_But_Search.Name = "Su_But_Search";
+            this.Su_But_Search.Size = new System.Drawing.Size(123, 36);
+            this.Su_But_Search.TabIndex = 7;
+            this.Su_But_Search.Text = "Search";
+            this.Su_But_Search.UseVisualStyleBackColor = true;
+            this.Su_But_Search.Click += new System.EventHandler(this.Su_But_Search_Click);
             // 
             // Su_DD_Branch
             // 
             this.Su_DD_Branch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Su_DD_Branch.FormattingEnabled = true;
-            this.Su_DD_Branch.Location = new System.Drawing.Point(766, 61);
+            this.Su_DD_Branch.Location = new System.Drawing.Point(890, 64);
             this.Su_DD_Branch.Name = "Su_DD_Branch";
             this.Su_DD_Branch.Size = new System.Drawing.Size(252, 25);
             this.Su_DD_Branch.TabIndex = 5;
@@ -2026,7 +1936,7 @@
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(682, 64);
+            this.label42.Location = new System.Drawing.Point(806, 67);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(63, 18);
             this.label42.TabIndex = 1;
@@ -2036,7 +1946,7 @@
             // 
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(197, 63);
+            this.label41.Location = new System.Drawing.Point(321, 66);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(44, 18);
             this.label41.TabIndex = 0;
@@ -2103,15 +2013,216 @@
             // 
             // AddEditPayment
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.AddEditPayment.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.AddEditPayment.DefaultCellStyle = dataGridViewCellStyle3;
             this.AddEditPayment.HeaderText = "Action";
             this.AddEditPayment.Name = "AddEditPayment";
             this.AddEditPayment.ReadOnly = true;
             this.AddEditPayment.Text = "Add/Edit Payment";
             this.AddEditPayment.UseColumnTextForButtonValue = true;
             this.AddEditPayment.Width = 184;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.tabPage1.Controls.Add(this.label47);
+            this.tabPage1.Controls.Add(this.An_DD_Month);
+            this.tabPage1.Controls.Add(this.An_DD_Year);
+            this.tabPage1.Controls.Add(this.checkBox1);
+            this.tabPage1.Controls.Add(this.An_But_Reset);
+            this.tabPage1.Controls.Add(this.An_But_Search);
+            this.tabPage1.Controls.Add(this.An_DD_Branch);
+            this.tabPage1.Controls.Add(this.An_L_User);
+            this.tabPage1.Controls.Add(this.label49);
+            this.tabPage1.Controls.Add(this.label50);
+            this.tabPage1.Controls.Add(this.label51);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1506, 986);
+            this.tabPage1.TabIndex = 4;
+            this.tabPage1.Text = "Analysis";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(564, 66);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(57, 18);
+            this.label47.TabIndex = 24;
+            this.label47.Text = "Month:";
+            // 
+            // An_DD_Month
+            // 
+            this.An_DD_Month.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.An_DD_Month.FormattingEnabled = true;
+            this.An_DD_Month.Location = new System.Drawing.Point(643, 63);
+            this.An_DD_Month.Name = "An_DD_Month";
+            this.An_DD_Month.Size = new System.Drawing.Size(134, 25);
+            this.An_DD_Month.TabIndex = 23;
+            // 
+            // An_DD_Year
+            // 
+            this.An_DD_Year.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.An_DD_Year.FormattingEnabled = true;
+            this.An_DD_Year.Location = new System.Drawing.Point(392, 63);
+            this.An_DD_Year.Name = "An_DD_Year";
+            this.An_DD_Year.Size = new System.Drawing.Size(134, 25);
+            this.An_DD_Year.TabIndex = 22;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(1018, 95);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(124, 21);
+            this.checkBox1.TabIndex = 21;
+            this.checkBox1.Text = "All Branches";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // An_But_Reset
+            // 
+            this.An_But_Reset.Location = new System.Drawing.Point(785, 131);
+            this.An_But_Reset.Name = "An_But_Reset";
+            this.An_But_Reset.Size = new System.Drawing.Size(123, 36);
+            this.An_But_Reset.TabIndex = 20;
+            this.An_But_Reset.Text = "Reset";
+            this.An_But_Reset.UseVisualStyleBackColor = true;
+            // 
+            // An_But_Search
+            // 
+            this.An_But_Search.Location = new System.Drawing.Point(652, 131);
+            this.An_But_Search.Name = "An_But_Search";
+            this.An_But_Search.Size = new System.Drawing.Size(123, 36);
+            this.An_But_Search.TabIndex = 19;
+            this.An_But_Search.Text = "Search";
+            this.An_But_Search.UseVisualStyleBackColor = true;
+            // 
+            // An_DD_Branch
+            // 
+            this.An_DD_Branch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.An_DD_Branch.FormattingEnabled = true;
+            this.An_DD_Branch.Location = new System.Drawing.Point(890, 64);
+            this.An_DD_Branch.Name = "An_DD_Branch";
+            this.An_DD_Branch.Size = new System.Drawing.Size(252, 25);
+            this.An_DD_Branch.TabIndex = 18;
+            // 
+            // An_L_User
+            // 
+            this.An_L_User.AutoSize = true;
+            this.An_L_User.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.An_L_User.ForeColor = System.Drawing.Color.Maroon;
+            this.An_L_User.Location = new System.Drawing.Point(1393, 10);
+            this.An_L_User.Name = "An_L_User";
+            this.An_L_User.Size = new System.Drawing.Size(40, 18);
+            this.An_L_User.TabIndex = 17;
+            this.An_L_User.Text = "user";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(1232, 10);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(121, 18);
+            this.label49.TabIndex = 16;
+            this.label49.Text = "Logged in User:";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(806, 67);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(63, 18);
+            this.label50.TabIndex = 15;
+            this.label50.Text = "Branch:";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Location = new System.Drawing.Point(321, 66);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(44, 18);
+            this.label51.TabIndex = 14;
+            this.label51.Text = "Year:";
+            // 
+            // SalesDate
+            // 
+            this.SalesDate.HeaderText = "Day";
+            this.SalesDate.Name = "SalesDate";
+            this.SalesDate.ReadOnly = true;
+            this.SalesDate.Width = 50;
+            // 
+            // TotalSales
+            // 
+            this.TotalSales.HeaderText = "Total Sales";
+            this.TotalSales.Name = "TotalSales";
+            this.TotalSales.ReadOnly = true;
+            this.TotalSales.Width = 150;
+            // 
+            // CashSales
+            // 
+            this.CashSales.HeaderText = "Cash Sales";
+            this.CashSales.Name = "CashSales";
+            this.CashSales.ReadOnly = true;
+            this.CashSales.Width = 150;
+            // 
+            // Charge
+            // 
+            this.Charge.HeaderText = "Charge";
+            this.Charge.Name = "Charge";
+            this.Charge.ReadOnly = true;
+            this.Charge.Width = 150;
+            // 
+            // CreditCard
+            // 
+            this.CreditCard.HeaderText = "Credit Card";
+            this.CreditCard.Name = "CreditCard";
+            this.CreditCard.ReadOnly = true;
+            this.CreditCard.Width = 150;
+            // 
+            // Check
+            // 
+            this.Check.HeaderText = "Check";
+            this.Check.Name = "Check";
+            this.Check.ReadOnly = true;
+            this.Check.Width = 150;
+            // 
+            // GiftCheck
+            // 
+            this.GiftCheck.HeaderText = "Gift Check";
+            this.GiftCheck.Name = "GiftCheck";
+            this.GiftCheck.ReadOnly = true;
+            // 
+            // TaxCert
+            // 
+            this.TaxCert.HeaderText = "Tax Cert";
+            this.TaxCert.Name = "TaxCert";
+            this.TaxCert.ReadOnly = true;
+            // 
+            // Coupon
+            // 
+            this.Coupon.HeaderText = "Coupon";
+            this.Coupon.Name = "Coupon";
+            this.Coupon.ReadOnly = true;
+            // 
+            // PO
+            // 
+            this.PO.HeaderText = "PO";
+            this.PO.Name = "PO";
+            this.PO.ReadOnly = true;
+            this.PO.Width = 150;
+            // 
+            // Comments
+            // 
+            this.Comments.HeaderText = "Comments";
+            this.Comments.Name = "Comments";
+            this.Comments.ReadOnly = true;
+            this.Comments.Width = 210;
             // 
             // Form_Balanse
             // 
@@ -2131,9 +2242,11 @@
             this.Tab_AddPOPayment.ResumeLayout(false);
             this.Tab_AddPOPayment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PO_DGV_POItems)).EndInit();
-            this.SummaryReport.ResumeLayout(false);
-            this.SummaryReport.PerformLayout();
+            this.Tab_MonthlySales.ResumeLayout(false);
+            this.Tab_MonthlySales.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Su_DGV_SalesDep)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2278,9 +2391,9 @@
         private System.Windows.Forms.RichTextBox ED_RTB_DepComm;
         private System.Windows.Forms.Label PO_L_User;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TabPage SummaryReport;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage Tab_MonthlySales;
+        private System.Windows.Forms.Button Su_But_Reset;
+        private System.Windows.Forms.Button Su_But_Search;
         private System.Windows.Forms.ComboBox Su_DD_Branch;
         private System.Windows.Forms.Label Su_L_User;
         private System.Windows.Forms.Label label44;
@@ -2292,8 +2405,17 @@
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.ComboBox Su_DD_Month;
         private System.Windows.Forms.DataGridView Su_DGV_SalesDep;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.ComboBox Su_DD_Report;
+        private System.Windows.Forms.CheckBox chkSearchByPo_Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Branch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PODate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn POAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn POStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaymentType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaymentDate;
+        private System.Windows.Forms.DataGridViewButtonColumn AddEditPayment;
+        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridViewTextBoxColumn SalesDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalSales;
         private System.Windows.Forms.DataGridViewTextBoxColumn CashSales;
@@ -2305,16 +2427,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Coupon;
         private System.Windows.Forms.DataGridViewTextBoxColumn PO;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comments;
-        private System.Windows.Forms.CheckBox chkSearchByPo_Date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Branch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PODate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn POAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn POStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PaymentType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PaymentDate;
-        private System.Windows.Forms.DataGridViewButtonColumn AddEditPayment;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.ComboBox An_DD_Month;
+        private System.Windows.Forms.ComboBox An_DD_Year;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button An_But_Reset;
+        private System.Windows.Forms.Button An_But_Search;
+        private System.Windows.Forms.ComboBox An_DD_Branch;
+        private System.Windows.Forms.Label An_L_User;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label51;
     }
 
      
