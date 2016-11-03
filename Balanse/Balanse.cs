@@ -1818,22 +1818,199 @@ namespace Balanse
                 PO_But_Date.Enabled = false;
             }
         }
-
-        private void Su_CB_All_CheckedChanged(object sender, EventArgs e)
+        public void ResetMonthlySalesSearch()
         {
-            string searchquery = "";
-            
+            Su_DD_Branch.Text = "";
+            Su_DD_Month.Text = "";
+            Su_DD_Year.Text = "";
         }
-
-        private void Su_But_Search_Click(object sender, EventArgs e)
+        public Boolean PopulateMonthlySales()
         {
+            
+            this.Su_DGV_Sales.DataSource = null;
+            this.Su_DGV_Sales.Rows.Clear();
+            Boolean IsSuccess = true;
             BalanseConn SummaryConn = new BalanseConn();
             if (Su_CB_All.Checked)
             {
-                DataTable items = SummaryConn.SelectQuery(@"select strftime('%d',date), branch, sum(total_sales), sum(cash), sum(charge), sum(credit_card), sum('check'), sum(gift_check), sum(coupon), sum(tax_cert),sum(po) from sales where strftime('%Y',date)='"  +Su_DD_Year.Text+ "' and case strftime('%m', date) when '01' then 'JAN' when '02' then 'FEB' when '03' then 'MAR' when '04' then 'APR' when '05' then 'MAY' when '06' then 'JUN' when '07' then 'JUL' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END ='"+Su_DD_Month.Text+"' group by strftime('%D',date)");
-                MessageBox.Show("select strftime('%d',date), branch, sum(total_sales), sum(cash), sum(charge), sum(credit_card), sum('check'), sum(gift_check), sum(coupon), sum(tax_cert),sum(po) from sales where strftime('%Y',date)= " + Su_DD_Year.Text + " and case strftime('%m', date) when '01' then 'JAN' when '02' then 'FEB' when '03' then 'MAR' when '04' then 'APR' when '05' then 'MAY' when '06' then 'JUN' when '07' then 'JUL' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END = " + Su_DD_Month.Text + " group by strftime('%D',date)");
+                DataTable SalesItems = SummaryConn.SelectQuery(@"select strftime('%d',date), sum(total_sales), sum(cash), sum(charge), sum(credit_card), sum('check'), sum(gift_check), sum(coupon), sum(tax_cert),sum(po), comments from sales where strftime('%Y',date)='" + Su_DD_Year.Text + "' and case strftime('%m', date) when '01' then 'JANUARY' when '02' then 'FEBRUARY' when '03' then 'MARCH' when '04' then 'APRIL' when '05' then 'MAY' when '06' then 'JUNE' when '07' then 'JULY' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END ='" + Su_DD_Month.Text + "' group by strftime('%d',date)");
+                if (SalesItems.Rows.Count < 1)
+                {
+                    IsSuccess = false;
+                    MessageBox.Show("No records were found.");
+                }
+                else
+                {
+                    foreach (DataRow row in SalesItems.Rows)
+                    {
+                        string day = row[0].ToString();
+
+                        decimal total_sales = Decimal.Parse(row[1].ToString());
+
+                        decimal cash = 0;
+                        if (row[2] != DBNull.Value)
+                        {
+                            cash = Decimal.Parse(row[2].ToString());
+                        }
+
+                        decimal charge = 0;
+                        if (row[3] != DBNull.Value)
+                        {
+                            charge = Decimal.Parse(row[3].ToString());
+                        }
+
+                        decimal credit_card = 0;
+                        if (row[4] != DBNull.Value)
+                        {
+                            credit_card = Decimal.Parse(row[4].ToString());
+                        }
+
+                        decimal check = 0;
+                        if (row[5] != DBNull.Value)
+                        {
+                            check = Decimal.Parse(row[5].ToString());
+                        }
+                        decimal gift_check = 0;
+                        if (row[6] != DBNull.Value)
+                        {
+                            gift_check = Decimal.Parse(row[6].ToString());
+                        }
+
+                        decimal coupon = 0;
+                        if (row[7] != DBNull.Value)
+                        {
+                            coupon = Decimal.Parse(row[7].ToString());
+                        }
+
+                        decimal tax_cert = 0;
+
+                        if (row[8] != DBNull.Value)
+                        {
+                            tax_cert = Decimal.Parse(row[8].ToString());
+                        }
+
+                        decimal po = 0;
+                        if (row[9] != DBNull.Value)
+                        {
+                            po = Decimal.Parse(row[9].ToString());
+                        }
+
+                        string comments = row[10].ToString();
+                        Su_DGV_Sales.Rows.Add(
+                        day,
+                        total_sales.ToString("#,##0.00"),
+                        cash.ToString("#,##0.00"),
+                        charge.ToString("#,##0.00"),
+                        credit_card.ToString("#,##0.00"),
+                        check.ToString("#,##0.00"),
+                        gift_check.ToString("#,##0.00"),
+                        coupon.ToString("#,##0.00"),
+                        tax_cert.ToString("#,##0.00"),
+                        po.ToString("#,##0.00"),
+                        comments);
+
+                        Su_L_RepName.Text = Su_DD_Month.Text+ " " + Su_DD_Year.Text+ " SALES SUMMARY FOR ALL BRANCHES";
+                    }
+                }
+                return IsSuccess;
             }
-            
+            else
+            {
+
+                DataTable SalesItems = SummaryConn.SelectQuery(@"select strftime('%d',date), sum(total_sales), sum(cash), sum(charge), sum(credit_card), sum('check'), sum(gift_check), sum(coupon), sum(tax_cert),sum(po), comments from sales where strftime('%Y',date)='" + Su_DD_Year.Text + "' and case strftime('%m', date) when '01' then 'JANUARY' when '02' then 'FEBRUARY' when '03' then 'MARCH' when '04' then 'APRIL' when '05' then 'MAY' when '06' then 'JUNE' when '07' then 'JULY' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END ='" + Su_DD_Month.Text + "' and branch='" + Su_DD_Branch.Text + "' group by strftime('%d',date)");
+                if (SalesItems.Rows.Count < 1)
+                {
+                    IsSuccess = false;
+                    ResetMonthlySalesSearch();
+                    MessageBox.Show("No records found.");
+                }
+                else
+                {
+                    foreach (DataRow row in SalesItems.Rows)
+                    {
+
+                        string day = row[0].ToString();
+                        decimal total_sales = Decimal.Parse(row[1].ToString());
+
+                        decimal cash = 0;
+                        if (row[2] != DBNull.Value)
+                        {
+                            cash = Decimal.Parse(row[2].ToString());
+                        }
+
+                        decimal charge = 0;
+                        if (row[3] != DBNull.Value)
+                        {
+                            charge = Decimal.Parse(row[3].ToString());
+                        }
+
+                        decimal credit_card = 0;
+                        if (row[4] != DBNull.Value)
+                        {
+                            credit_card = Decimal.Parse(row[4].ToString());
+                        }
+
+                        decimal check = 0;
+                        if (row[5] != DBNull.Value)
+                        {
+                            check = Decimal.Parse(row[5].ToString());
+                        }
+                        decimal gift_check = 0;
+                        if (row[6] != DBNull.Value)
+                        {
+                            gift_check = Decimal.Parse(row[6].ToString());
+                        }
+
+                        decimal coupon = 0;
+                        if (row[7] != DBNull.Value)
+                        {
+                            coupon = Decimal.Parse(row[7].ToString());
+                        }
+
+                        decimal tax_cert = 0;
+
+                        if (row[8] != DBNull.Value)
+                        {
+                            tax_cert = Decimal.Parse(row[8].ToString());
+                        }
+
+                        decimal po = 0;
+                        if (row[9] != DBNull.Value)
+                        {
+                            po = Decimal.Parse(row[9].ToString());
+                        }
+                        string comments = row[10].ToString();
+
+                        Su_L_RepName.Text = Su_DD_Month.Text + " " + Su_DD_Year.Text + " SALES SUMMARY FOR " + Su_DD_Branch.Text;
+                        Su_DGV_Sales.Rows.Add(
+                        day,
+                        total_sales.ToString("#,##0.00"),
+                        cash.ToString("#,##0.00"),
+                        charge.ToString("#,##0.00"),
+                        credit_card.ToString("#,##0.00"),
+                        check.ToString("#,##0.00"),
+                        gift_check.ToString("#,##0.00"),
+                        coupon.ToString("#,##0.00"),
+                        tax_cert.ToString("#,##0.00"),
+                        po.ToString("#,##0.00"),
+                        comments);
+                    }
+                }
+                return IsSuccess;
+            }
+        }
+           
+
+        private void Su_But_Search_Click(object sender, EventArgs e)
+        {
+            PopulateMonthlySales();
+            Su_CB_All.Checked = false;  
+        }
+
+        private void Su_But_Reset_Click(object sender, EventArgs e)
+        {
+            ResetMonthlySalesSearch();
+            Su_CB_All.Checked = false;
         }
     }
 }
