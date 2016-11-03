@@ -261,55 +261,55 @@ namespace Balanse
             DateTime REC_DT = DateTime.Now;
             String ENCODED_BY = ED_L_User.Text;
             // insert TOTALS to DEPOSIT SUMMARY
-            int DepID=InsertDepTransactionConn.InsertDepositSummary(REPNO, DATE, BRANCH, CASHDEP, ENC, CHECKDEP, TOTAL_DEP, DEP_COMMENTS, REC_DT, ENCODED_BY);
+            int DepID=InsertDepTransactionConn.InsertDepositSummary(REPNO, DATE, BRANCH, CASHDEP, ENC, CHECKDEP, TOTAL_DEP, DEP_COMMENTS, REC_DT, ENCODED_BY, 0);
             //insert DETAILS to DEPOSIT
             if (!IsEmpty(ED_TB_Cash1.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP1, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP1, REC_DT, ENCODED_BY, 0);
             }
             if (!IsEmpty(ED_TB_Cash2.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP2, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP2, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Cash3.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP3, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP3, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Cash4.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP4, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP4, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_EncCh1.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC1, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC1, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_EncCh2.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC2, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC2, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_EncCh3.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC3, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC3, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_EncCh4.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC4, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC4, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Ch1.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP1, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP1, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Ch2.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP2, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP2, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Ch3.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP3, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP3, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Ch4.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP4, REC_DT, ENCODED_BY);
+                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP4, REC_DT, ENCODED_BY,0);
             }
             return DepID;
             
@@ -1818,6 +1818,7 @@ namespace Balanse
                 PO_But_Date.Enabled = false;
             }
         }
+        //Monthly Sales Tab
         public void ResetMonthlySalesSearch()
         {
             Su_DD_Branch.Text = "";
@@ -1999,8 +2000,6 @@ namespace Balanse
                 return IsSuccess;
             }
         }
-           
-
         private void Su_But_Search_Click(object sender, EventArgs e)
         {
             PopulateMonthlySales();
@@ -2012,5 +2011,14 @@ namespace Balanse
             ResetMonthlySalesSearch();
             Su_CB_All.Checked = false;
         }
+
+        //Analysis Tab
+        public void ResetAnalysisSearch()
+        {
+            Su_DD_Branch.Text = "";
+            Su_DD_Month.Text = "";
+            Su_DD_Year.Text = "";
+        }
     }
+
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Tab_Balanse = new System.Windows.Forms.TabControl();
             this.Tab_Sales = new System.Windows.Forms.TabPage();
             this.S_L_User = new System.Windows.Forms.Label();
@@ -221,6 +221,7 @@
             this.CheSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Expenses = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CashDep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EncDep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CheckDep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PODep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CSalesvsCDep = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1013,6 +1014,7 @@
             // 
             // Tab_AddExpDep
             // 
+            this.Tab_AddExpDep.AutoScroll = true;
             this.Tab_AddExpDep.BackColor = System.Drawing.Color.LightSteelBlue;
             this.Tab_AddExpDep.Controls.Add(this.label40);
             this.Tab_AddExpDep.Controls.Add(this.ED_RTB_DepComm);
@@ -1768,9 +1770,9 @@
             // 
             // AddEditPayment
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.AddEditPayment.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.AddEditPayment.DefaultCellStyle = dataGridViewCellStyle8;
             this.AddEditPayment.HeaderText = "Action";
             this.AddEditPayment.Name = "AddEditPayment";
             this.AddEditPayment.ReadOnly = true;
@@ -2243,6 +2245,7 @@
             this.CheSales,
             this.Expenses,
             this.CashDep,
+            this.EncDep,
             this.CheckDep,
             this.PODep,
             this.CSalesvsCDep});
@@ -2282,8 +2285,10 @@
             // 
             // Expenses
             // 
-            this.Expenses.HeaderText = "Expenses";
+            this.Expenses.HeaderText = "Cash Out";
             this.Expenses.Name = "Expenses";
+            this.Expenses.ReadOnly = true;
+            this.Expenses.Width = 150;
             // 
             // CashDep
             // 
@@ -2291,6 +2296,13 @@
             this.CashDep.Name = "CashDep";
             this.CashDep.ReadOnly = true;
             this.CashDep.Width = 150;
+            // 
+            // EncDep
+            // 
+            this.EncDep.HeaderText = "Enc. Check Deposit";
+            this.EncDep.Name = "EncDep";
+            this.EncDep.ReadOnly = true;
+            this.EncDep.Width = 170;
             // 
             // CheckDep
             // 
@@ -2310,7 +2322,8 @@
             // 
             this.CSalesvsCDep.HeaderText = "Cash Sales vs Cash Deposit";
             this.CSalesvsCDep.Name = "CSalesvsCDep";
-            this.CSalesvsCDep.Width = 150;
+            this.CSalesvsCDep.ReadOnly = true;
+            this.CSalesvsCDep.Width = 200;
             // 
             // Form_Balanse
             // 
@@ -2534,6 +2547,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CheSales;
         private System.Windows.Forms.DataGridViewTextBoxColumn Expenses;
         private System.Windows.Forms.DataGridViewTextBoxColumn CashDep;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EncDep;
         private System.Windows.Forms.DataGridViewTextBoxColumn CheckDep;
         private System.Windows.Forms.DataGridViewTextBoxColumn PODep;
         private System.Windows.Forms.DataGridViewTextBoxColumn CSalesvsCDep;

@@ -108,6 +108,8 @@ namespace Balanse
                     Convert.ToDecimal(row.Cells[1].Value.ToString()),
                     this.encoder
                     ) + ",";
+
+               
             }
             if((outputrowid.Split(',').Length - 1) == dgv_PoPayments.Rows.Count)
             {
