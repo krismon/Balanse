@@ -115,7 +115,7 @@ namespace Balanse
             return SalesId;
         }
 
-        public int InsertPO(int ReportNo, int SalesId, DateTime PODate, string Branch, string POName, double POAmt, string POStatus, DateTime PORecDate, string POEncodedBy)
+        public int InsertPO(int ReportNo, int SalesId, DateTime PODate, string Branch, string POName, double POAmt, string POStatus, DateTime PORecDate, string POEncodedBy, string InvoiceNo, DateTime UpdateDate)
         {
             Dictionary<string, object> InsertPOParameters = new Dictionary<string, object>();
             InsertPOParameters.Add("SALES_ID", SalesId);
@@ -127,10 +127,12 @@ namespace Balanse
             InsertPOParameters.Add("PO_STATUS", POStatus);
             InsertPOParameters.Add("REC_DT", PORecDate);
             InsertPOParameters.Add("ENCODED_BY", POEncodedBy);
+            InsertPOParameters.Add("INVOICE_NO", InvoiceNo);
+            InsertPOParameters.Add("UPDATE_DATE", UpdateDate);
             int POId = InsertQuery("PURCHASE_ORDERS", InsertPOParameters);
             return POId;
         }
-        public int InsertExpenses(int ReportNum, DateTime ExpenseDate, string Branch, double Pcf, double Pcf1, double Pcf2, double Pcf3, double Pcf4, double Wtx, double Refund,double Others, double Others1, double Others2, double Others3, double Others4, double TotalExp, string Comments, DateTime Recdt, string Encodedby)
+        public int InsertExpenses(int ReportNum, DateTime ExpenseDate, string Branch, double Pcf, double Pcf1, double Pcf2, double Pcf3, double Pcf4, double Wtx, double Refund, double Others, double Others1, double Others2, double Others3, double Others4, double TotalExp, string Comments, DateTime Recdt, string Encodedby)
         {
             Dictionary<string, object> InsertExpenseParameters = new Dictionary<string, object>();
             InsertExpenseParameters.Add("REPORT_NO", ReportNum);
@@ -155,7 +157,7 @@ namespace Balanse
             int ExpenseID = InsertQuery("EXPENSES", InsertExpenseParameters);
             return ExpenseID;
         }
-        public int InsertDeposit(int DepSummID,int RepNo,DateTime Date, string Branch, string DepositType, double DepAmt, DateTime RecDt, string EncodedBy, int POTag)
+        public int InsertDeposit(int DepSummID, int RepNo, DateTime Date, string Branch, string DepositType, double DepAmt, DateTime RecDt, string EncodedBy, int POTag)
         {
             Dictionary<string, object> InsertDepositParameters = new Dictionary<string, object>();
             InsertDepositParameters.Add("DEPSUMM_ID", DepSummID);
@@ -176,7 +178,7 @@ namespace Balanse
             InsertDepositSummParameters.Add("REPORT_NO", RepNo);
             InsertDepositSummParameters.Add("DATE", Date);
             InsertDepositSummParameters.Add("BRANCH", Branch);
-            InsertDepositSummParameters.Add("CASH",Cash);
+            InsertDepositSummParameters.Add("CASH", Cash);
             InsertDepositSummParameters.Add("ENC_CHECK", EncCheck);
             InsertDepositSummParameters.Add("CHECK", Check);
             InsertDepositSummParameters.Add("TOTAL_DEPOSIT", TotalDep);
@@ -188,19 +190,23 @@ namespace Balanse
             return DepositID;
         }
 
-        public int IntertPO_Payment(int po_id, DateTime payment_date, string payment_type, decimal payment_amount, string encoded_by)
+        public int InsertPO_Payment(DateTime po_date, string branch, decimal po_amount, string payment_type, DateTime payment_date, decimal paid_amount, DateTime rec_dt, string encoded_by, int invoice_no, int dep_tag)
         {
-            Dictionary<string, object> InsertPaymentParameters = new Dictionary<string, object>();
-            InsertPaymentParameters.Add("po_id", po_id);
-            InsertPaymentParameters.Add("PAYMENT_DATE", payment_date);
-            InsertPaymentParameters.Add("PAYMENT_TYPE", payment_type);
-            InsertPaymentParameters.Add("PAID_AMOUNT", payment_amount);
-            InsertPaymentParameters.Add("ENCODED_BY", encoded_by);
-            int PAYMENT_ID = InsertQuery("PO_PAYMENTS", InsertPaymentParameters);
+            Dictionary<string, object> InsertPOPaymentParameters = new Dictionary<string, object>();
+            InsertPOPaymentParameters.Add("PO_DATE", po_date);
+            InsertPOPaymentParameters.Add("BRANCH", branch);
+            InsertPOPaymentParameters.Add("PO_AMOUNT", po_amount);
+            InsertPOPaymentParameters.Add("PAYMENT_TYPE", payment_type);
+            InsertPOPaymentParameters.Add("PAYMENT_DATE", payment_date);
+            InsertPOPaymentParameters.Add("PAID_AMOUNT", paid_amount);
+            InsertPOPaymentParameters.Add("REC_DT", rec_dt);
+            InsertPOPaymentParameters.Add("ENCODED_BY", encoded_by);
+            InsertPOPaymentParameters.Add("INVOICE_NO", invoice_no);
+            InsertPOPaymentParameters.Add("DEPOSIT_TAG", dep_tag);
+            int PAYMENT_ID = InsertQuery("PO_PAYMENTS", InsertPOPaymentParameters);
             return PAYMENT_ID;
         }
-
-        public int InsertPOPaymentSummary(int po_id, DateTime Date, string Branch, double Cash, double EncChec, double Check, double TotalDep, string Comments, DateTime RecDt, string EncodedBy, int POTag)
+        public int InsertPODepositSummary(int po_id, DateTime Date, string Branch, decimal Cash, decimal EncCheck, decimal Check, decimal TotalDep, string Comments, DateTime RecDt, string EncodedBy, int POTag)
         {
             Dictionary<string, object> InsertPOSummParameters = new Dictionary<string, object>();
             InsertPOSummParameters.Add("REPORT_NO", po_id);
@@ -217,7 +223,23 @@ namespace Balanse
             int DepositID = InsertQuery("DEPOSIT_SUMMARY", InsertPOSummParameters);
             return DepositID;
         }
-        public void DropPayment(int po_id)
+        public int InsertPODeposit(int DepSummID, int RepNo, DateTime Date, string Branch, string DepositType, double DepAmt, DateTime RecDt, string EncodedBy, int POTag)
+        {
+            Dictionary<string, object> InsertPODepositParameters = new Dictionary<string, object>();
+            InsertPODepositParameters.Add("DEPSUMM_ID", DepSummID);
+            InsertPODepositParameters.Add("REPORT_NO", RepNo);
+            InsertPODepositParameters.Add("DATE", Date);
+            InsertPODepositParameters.Add("BRANCH", Branch);
+            InsertPODepositParameters.Add("DEPOSIT_TYPE", DepositType);
+            InsertPODepositParameters.Add("AMOUNT", DepAmt);
+            InsertPODepositParameters.Add("REC_DT", RecDt);
+            InsertPODepositParameters.Add("ENCODED_BY", EncodedBy);
+            InsertPODepositParameters.Add("PO_TAG", POTag);
+            int PODepositID = InsertQuery("DEPOSIT", InsertPODepositParameters);
+            return PODepositID;
+        }
+
+        public void DropPayment(int inv_no)
         {
             using (SQLiteConnection conn = new SQLiteConnection("data source=C:\\BalanseData\\Balanse"))
             {
@@ -227,13 +249,27 @@ namespace Balanse
                     conn.Open();
 
                     SQLiteHelper sh = new SQLiteHelper(cmd);
-                    sh.Execute("Delete from PO_PAYMENTS"  + " WHERE PO_ID = '" + po_id + "';");
+                    sh.Execute("Delete from PO_PAYMENTS" + " WHERE INVOICE_NO = '" + inv_no + "';");
                     conn.Close();
 
                 }
             }
         }
+        public void UpdatePOStatus(string po_status, int inv_no, DateTime update_date)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection("data source=C:\\BalanseData\\Balanse"))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+                    sh.Execute("UPDATE PURCHASE_ORDERS" + " SET PO_STATUS = '" + po_status + "' , UPDATE_DATE= '"+update_date+ "' WHERE INVOICE_NO = '" + inv_no + "';");
+                    conn.Close();
 
+                }
+            }
+        }
     }
 }
 

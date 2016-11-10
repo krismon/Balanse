@@ -28,9 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Tab_Balanse = new System.Windows.Forms.TabControl();
             this.Tab_Sales = new System.Windows.Forms.TabPage();
+            this.label48 = new System.Windows.Forms.Label();
+            this.S_TB_Inv10 = new System.Windows.Forms.TextBox();
+            this.S_TB_Inv9 = new System.Windows.Forms.TextBox();
+            this.S_TB_Inv6 = new System.Windows.Forms.TextBox();
+            this.S_TB_Inv7 = new System.Windows.Forms.TextBox();
+            this.S_TB_Inv8 = new System.Windows.Forms.TextBox();
+            this.S_TB_Inv5 = new System.Windows.Forms.TextBox();
+            this.S_TB_Inv4 = new System.Windows.Forms.TextBox();
+            this.S_TB_Inv1 = new System.Windows.Forms.TextBox();
+            this.S_TB_Inv2 = new System.Windows.Forms.TextBox();
+            this.S_TB_Inv3 = new System.Windows.Forms.TextBox();
             this.S_L_User = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
@@ -97,7 +108,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.S_But_Date = new System.Windows.Forms.DateTimePicker();
             this.Tab_AddExpDep = new System.Windows.Forms.TabPage();
@@ -156,18 +166,12 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.Tab_AddPOPayment = new System.Windows.Forms.TabPage();
+            this.PO_TB_Inv = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.chkSearchByPo_Date = new System.Windows.Forms.CheckBox();
             this.PO_L_User = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.PO_DGV_POItems = new System.Windows.Forms.DataGridView();
-            this.rowid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Branch = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PODate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.POAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.POStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PaidAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddEditPayment = new System.Windows.Forms.DataGridViewButtonColumn();
             this.PO_But_Reset = new System.Windows.Forms.Button();
             this.PO_But_Search = new System.Windows.Forms.Button();
             this.PO_TB_CustNameSearch = new System.Windows.Forms.TextBox();
@@ -177,6 +181,7 @@
             this.PO_But_Date = new System.Windows.Forms.DateTimePicker();
             this.label26 = new System.Windows.Forms.Label();
             this.Tab_MonthlySales = new System.Windows.Forms.TabPage();
+            this.Su_L_RepName = new System.Windows.Forms.Label();
             this.Su_DGV_Sales = new System.Windows.Forms.DataGridView();
             this.SalesDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -202,6 +207,7 @@
             this.label42 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.An_DGV_Items = new System.Windows.Forms.DataGridView();
             this.label47 = new System.Windows.Forms.Label();
             this.An_DD_Month = new System.Windows.Forms.ComboBox();
             this.An_DD_Year = new System.Windows.Forms.ComboBox();
@@ -213,8 +219,15 @@
             this.label49 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
-            this.Su_L_RepName = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.rowid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Branch = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PODate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.POAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.POStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PaidAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddEditPayment = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Day = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CSales = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -233,7 +246,7 @@
             this.Tab_MonthlySales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Su_DGV_Sales)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.An_DGV_Items)).BeginInit();
             this.SuspendLayout();
             // 
             // Tab_Balanse
@@ -257,6 +270,17 @@
             // 
             this.Tab_Sales.AutoScroll = true;
             this.Tab_Sales.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Tab_Sales.Controls.Add(this.label48);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv10);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv9);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv6);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv7);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv8);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv5);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv4);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv1);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv2);
+            this.Tab_Sales.Controls.Add(this.S_TB_Inv3);
             this.Tab_Sales.Controls.Add(this.S_L_User);
             this.Tab_Sales.Controls.Add(this.label38);
             this.Tab_Sales.Controls.Add(this.label34);
@@ -323,7 +347,6 @@
             this.Tab_Sales.Controls.Add(this.label5);
             this.Tab_Sales.Controls.Add(this.label4);
             this.Tab_Sales.Controls.Add(this.label3);
-            this.Tab_Sales.Controls.Add(this.label1);
             this.Tab_Sales.Controls.Add(this.label2);
             this.Tab_Sales.Controls.Add(this.S_But_Date);
             this.Tab_Sales.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -333,6 +356,95 @@
             this.Tab_Sales.Size = new System.Drawing.Size(1506, 986);
             this.Tab_Sales.TabIndex = 0;
             this.Tab_Sales.Text = "Sales";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(813, 596);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(120, 18);
+            this.label48.TabIndex = 139;
+            this.label48.Text = "Invoice Number";
+            // 
+            // S_TB_Inv10
+            // 
+            this.S_TB_Inv10.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv10.Location = new System.Drawing.Point(785, 926);
+            this.S_TB_Inv10.Name = "S_TB_Inv10";
+            this.S_TB_Inv10.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv10.TabIndex = 46;
+            // 
+            // S_TB_Inv9
+            // 
+            this.S_TB_Inv9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv9.Location = new System.Drawing.Point(785, 892);
+            this.S_TB_Inv9.Name = "S_TB_Inv9";
+            this.S_TB_Inv9.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv9.TabIndex = 43;
+            // 
+            // S_TB_Inv6
+            // 
+            this.S_TB_Inv6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv6.Location = new System.Drawing.Point(785, 790);
+            this.S_TB_Inv6.Name = "S_TB_Inv6";
+            this.S_TB_Inv6.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv6.TabIndex = 34;
+            // 
+            // S_TB_Inv7
+            // 
+            this.S_TB_Inv7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv7.Location = new System.Drawing.Point(785, 824);
+            this.S_TB_Inv7.Name = "S_TB_Inv7";
+            this.S_TB_Inv7.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv7.TabIndex = 37;
+            // 
+            // S_TB_Inv8
+            // 
+            this.S_TB_Inv8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv8.Location = new System.Drawing.Point(785, 858);
+            this.S_TB_Inv8.Name = "S_TB_Inv8";
+            this.S_TB_Inv8.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv8.TabIndex = 40;
+            // 
+            // S_TB_Inv5
+            // 
+            this.S_TB_Inv5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv5.Location = new System.Drawing.Point(785, 756);
+            this.S_TB_Inv5.Name = "S_TB_Inv5";
+            this.S_TB_Inv5.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv5.TabIndex = 31;
+            // 
+            // S_TB_Inv4
+            // 
+            this.S_TB_Inv4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv4.Location = new System.Drawing.Point(785, 722);
+            this.S_TB_Inv4.Name = "S_TB_Inv4";
+            this.S_TB_Inv4.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv4.TabIndex = 28;
+            // 
+            // S_TB_Inv1
+            // 
+            this.S_TB_Inv1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv1.Location = new System.Drawing.Point(785, 620);
+            this.S_TB_Inv1.Name = "S_TB_Inv1";
+            this.S_TB_Inv1.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv1.TabIndex = 19;
+            // 
+            // S_TB_Inv2
+            // 
+            this.S_TB_Inv2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv2.Location = new System.Drawing.Point(785, 654);
+            this.S_TB_Inv2.Name = "S_TB_Inv2";
+            this.S_TB_Inv2.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv2.TabIndex = 22;
+            // 
+            // S_TB_Inv3
+            // 
+            this.S_TB_Inv3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.S_TB_Inv3.Location = new System.Drawing.Point(785, 688);
+            this.S_TB_Inv3.Name = "S_TB_Inv3";
+            this.S_TB_Inv3.Size = new System.Drawing.Size(162, 25);
+            this.S_TB_Inv3.TabIndex = 25;
             // 
             // S_L_User
             // 
@@ -374,7 +486,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(1176, 596);
+            this.label33.Location = new System.Drawing.Point(1241, 596);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(61, 18);
             this.label33.TabIndex = 124;
@@ -383,7 +495,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(983, 596);
+            this.label32.Location = new System.Drawing.Point(1048, 596);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(48, 18);
             this.label32.TabIndex = 123;
@@ -488,10 +600,10 @@
             // S_TB_POAmt10
             // 
             this.S_TB_POAmt10.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt10.Location = new System.Drawing.Point(1136, 926);
+            this.S_TB_POAmt10.Location = new System.Drawing.Point(1201, 926);
             this.S_TB_POAmt10.Name = "S_TB_POAmt10";
             this.S_TB_POAmt10.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt10.TabIndex = 38;
+            this.S_TB_POAmt10.TabIndex = 48;
             this.S_TB_POAmt10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt10_KeyPress);
             this.S_TB_POAmt10.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt10_KeyUp);
@@ -499,10 +611,10 @@
             // S_TB_POAmt9
             // 
             this.S_TB_POAmt9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt9.Location = new System.Drawing.Point(1136, 892);
+            this.S_TB_POAmt9.Location = new System.Drawing.Point(1201, 892);
             this.S_TB_POAmt9.Name = "S_TB_POAmt9";
             this.S_TB_POAmt9.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt9.TabIndex = 36;
+            this.S_TB_POAmt9.TabIndex = 45;
             this.S_TB_POAmt9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt9.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt9_KeyPress);
             this.S_TB_POAmt9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt9_KeyUp);
@@ -510,50 +622,50 @@
             // S_TB_POName9
             // 
             this.S_TB_POName9.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName9.Location = new System.Drawing.Point(888, 892);
+            this.S_TB_POName9.Location = new System.Drawing.Point(953, 892);
             this.S_TB_POName9.Name = "S_TB_POName9";
             this.S_TB_POName9.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName9.TabIndex = 35;
+            this.S_TB_POName9.TabIndex = 44;
             // 
             // S_TB_POName6
             // 
             this.S_TB_POName6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName6.Location = new System.Drawing.Point(888, 790);
+            this.S_TB_POName6.Location = new System.Drawing.Point(953, 790);
             this.S_TB_POName6.Name = "S_TB_POName6";
             this.S_TB_POName6.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName6.TabIndex = 29;
+            this.S_TB_POName6.TabIndex = 35;
             // 
             // S_TB_POName7
             // 
             this.S_TB_POName7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName7.Location = new System.Drawing.Point(888, 824);
+            this.S_TB_POName7.Location = new System.Drawing.Point(953, 824);
             this.S_TB_POName7.Name = "S_TB_POName7";
             this.S_TB_POName7.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName7.TabIndex = 31;
+            this.S_TB_POName7.TabIndex = 38;
             // 
             // S_TB_POName8
             // 
             this.S_TB_POName8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName8.Location = new System.Drawing.Point(888, 858);
+            this.S_TB_POName8.Location = new System.Drawing.Point(953, 858);
             this.S_TB_POName8.Name = "S_TB_POName8";
             this.S_TB_POName8.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName8.TabIndex = 33;
+            this.S_TB_POName8.TabIndex = 41;
             // 
             // S_TB_POName10
             // 
             this.S_TB_POName10.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName10.Location = new System.Drawing.Point(888, 926);
+            this.S_TB_POName10.Location = new System.Drawing.Point(953, 926);
             this.S_TB_POName10.Name = "S_TB_POName10";
             this.S_TB_POName10.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName10.TabIndex = 37;
+            this.S_TB_POName10.TabIndex = 47;
             // 
             // S_TB_POAmt6
             // 
             this.S_TB_POAmt6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt6.Location = new System.Drawing.Point(1136, 790);
+            this.S_TB_POAmt6.Location = new System.Drawing.Point(1201, 790);
             this.S_TB_POAmt6.Name = "S_TB_POAmt6";
             this.S_TB_POAmt6.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt6.TabIndex = 30;
+            this.S_TB_POAmt6.TabIndex = 36;
             this.S_TB_POAmt6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt6_KeyPress);
             this.S_TB_POAmt6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt6_KeyUp);
@@ -561,10 +673,10 @@
             // S_TB_POAmt7
             // 
             this.S_TB_POAmt7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt7.Location = new System.Drawing.Point(1136, 824);
+            this.S_TB_POAmt7.Location = new System.Drawing.Point(1201, 824);
             this.S_TB_POAmt7.Name = "S_TB_POAmt7";
             this.S_TB_POAmt7.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt7.TabIndex = 32;
+            this.S_TB_POAmt7.TabIndex = 39;
             this.S_TB_POAmt7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt7_KeyPress);
             this.S_TB_POAmt7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt7_KeyUp);
@@ -572,10 +684,10 @@
             // S_TB_POAmt8
             // 
             this.S_TB_POAmt8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt8.Location = new System.Drawing.Point(1136, 858);
+            this.S_TB_POAmt8.Location = new System.Drawing.Point(1201, 858);
             this.S_TB_POAmt8.Name = "S_TB_POAmt8";
             this.S_TB_POAmt8.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt8.TabIndex = 34;
+            this.S_TB_POAmt8.TabIndex = 42;
             this.S_TB_POAmt8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt8_KeyPress);
             this.S_TB_POAmt8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt8_KeyUp);
@@ -583,10 +695,10 @@
             // S_TB_POAmt5
             // 
             this.S_TB_POAmt5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt5.Location = new System.Drawing.Point(1136, 756);
+            this.S_TB_POAmt5.Location = new System.Drawing.Point(1201, 756);
             this.S_TB_POAmt5.Name = "S_TB_POAmt5";
             this.S_TB_POAmt5.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt5.TabIndex = 28;
+            this.S_TB_POAmt5.TabIndex = 33;
             this.S_TB_POAmt5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt5_KeyPress);
             this.S_TB_POAmt5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt5_KeyUp);
@@ -594,10 +706,10 @@
             // S_TB_POAmt4
             // 
             this.S_TB_POAmt4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt4.Location = new System.Drawing.Point(1136, 722);
+            this.S_TB_POAmt4.Location = new System.Drawing.Point(1201, 722);
             this.S_TB_POAmt4.Name = "S_TB_POAmt4";
             this.S_TB_POAmt4.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt4.TabIndex = 26;
+            this.S_TB_POAmt4.TabIndex = 30;
             this.S_TB_POAmt4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt4_KeyPress);
             this.S_TB_POAmt4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt4_KeyUp);
@@ -605,50 +717,50 @@
             // S_TB_POName4
             // 
             this.S_TB_POName4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName4.Location = new System.Drawing.Point(888, 722);
+            this.S_TB_POName4.Location = new System.Drawing.Point(953, 722);
             this.S_TB_POName4.Name = "S_TB_POName4";
             this.S_TB_POName4.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName4.TabIndex = 25;
+            this.S_TB_POName4.TabIndex = 29;
             // 
             // S_TB_POName1
             // 
             this.S_TB_POName1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName1.Location = new System.Drawing.Point(888, 620);
+            this.S_TB_POName1.Location = new System.Drawing.Point(953, 620);
             this.S_TB_POName1.Name = "S_TB_POName1";
             this.S_TB_POName1.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName1.TabIndex = 19;
+            this.S_TB_POName1.TabIndex = 20;
             // 
             // S_TB_POName2
             // 
             this.S_TB_POName2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName2.Location = new System.Drawing.Point(888, 654);
+            this.S_TB_POName2.Location = new System.Drawing.Point(953, 654);
             this.S_TB_POName2.Name = "S_TB_POName2";
             this.S_TB_POName2.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName2.TabIndex = 21;
+            this.S_TB_POName2.TabIndex = 23;
             // 
             // S_TB_POName3
             // 
             this.S_TB_POName3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName3.Location = new System.Drawing.Point(888, 688);
+            this.S_TB_POName3.Location = new System.Drawing.Point(953, 688);
             this.S_TB_POName3.Name = "S_TB_POName3";
             this.S_TB_POName3.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName3.TabIndex = 23;
+            this.S_TB_POName3.TabIndex = 26;
             // 
             // S_TB_POName5
             // 
             this.S_TB_POName5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POName5.Location = new System.Drawing.Point(888, 756);
+            this.S_TB_POName5.Location = new System.Drawing.Point(953, 756);
             this.S_TB_POName5.Name = "S_TB_POName5";
             this.S_TB_POName5.Size = new System.Drawing.Size(242, 25);
-            this.S_TB_POName5.TabIndex = 27;
+            this.S_TB_POName5.TabIndex = 32;
             // 
             // S_TB_POAmt1
             // 
             this.S_TB_POAmt1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt1.Location = new System.Drawing.Point(1136, 620);
+            this.S_TB_POAmt1.Location = new System.Drawing.Point(1201, 620);
             this.S_TB_POAmt1.Name = "S_TB_POAmt1";
             this.S_TB_POAmt1.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt1.TabIndex = 20;
+            this.S_TB_POAmt1.TabIndex = 21;
             this.S_TB_POAmt1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt1_KeyPress);
             this.S_TB_POAmt1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt1_KeyUp);
@@ -656,10 +768,10 @@
             // S_TB_POAmt2
             // 
             this.S_TB_POAmt2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt2.Location = new System.Drawing.Point(1136, 654);
+            this.S_TB_POAmt2.Location = new System.Drawing.Point(1201, 654);
             this.S_TB_POAmt2.Name = "S_TB_POAmt2";
             this.S_TB_POAmt2.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt2.TabIndex = 22;
+            this.S_TB_POAmt2.TabIndex = 24;
             this.S_TB_POAmt2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt2_KeyPress);
             this.S_TB_POAmt2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt2_KeyUp);
@@ -667,17 +779,17 @@
             // S_TB_POAmt3
             // 
             this.S_TB_POAmt3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_POAmt3.Location = new System.Drawing.Point(1136, 688);
+            this.S_TB_POAmt3.Location = new System.Drawing.Point(1201, 688);
             this.S_TB_POAmt3.Name = "S_TB_POAmt3";
             this.S_TB_POAmt3.Size = new System.Drawing.Size(162, 25);
-            this.S_TB_POAmt3.TabIndex = 24;
+            this.S_TB_POAmt3.TabIndex = 27;
             this.S_TB_POAmt3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.S_TB_POAmt3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.S_TB_POAmt3_KeyPress);
             this.S_TB_POAmt3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.S_TB_POAmt3_KeyUp);
             // 
             // S_TB_POTotal
             // 
-            this.S_TB_POTotal.Location = new System.Drawing.Point(888, 548);
+            this.S_TB_POTotal.Location = new System.Drawing.Point(953, 548);
             this.S_TB_POTotal.Name = "S_TB_POTotal";
             this.S_TB_POTotal.ReadOnly = true;
             this.S_TB_POTotal.Size = new System.Drawing.Size(162, 25);
@@ -688,7 +800,7 @@
             // S_TB_TaxCert
             // 
             this.S_TB_TaxCert.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_TaxCert.Location = new System.Drawing.Point(888, 515);
+            this.S_TB_TaxCert.Location = new System.Drawing.Point(953, 515);
             this.S_TB_TaxCert.Name = "S_TB_TaxCert";
             this.S_TB_TaxCert.Size = new System.Drawing.Size(162, 25);
             this.S_TB_TaxCert.TabIndex = 18;
@@ -699,7 +811,7 @@
             // S_TB_Cou
             // 
             this.S_TB_Cou.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_Cou.Location = new System.Drawing.Point(888, 481);
+            this.S_TB_Cou.Location = new System.Drawing.Point(953, 481);
             this.S_TB_Cou.Name = "S_TB_Cou";
             this.S_TB_Cou.Size = new System.Drawing.Size(162, 25);
             this.S_TB_Cou.TabIndex = 17;
@@ -710,7 +822,7 @@
             // S_TB_GC
             // 
             this.S_TB_GC.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_GC.Location = new System.Drawing.Point(888, 447);
+            this.S_TB_GC.Location = new System.Drawing.Point(953, 447);
             this.S_TB_GC.Name = "S_TB_GC";
             this.S_TB_GC.Size = new System.Drawing.Size(162, 25);
             this.S_TB_GC.TabIndex = 16;
@@ -720,7 +832,7 @@
             // 
             // S_TB_CheckTotal
             // 
-            this.S_TB_CheckTotal.Location = new System.Drawing.Point(888, 343);
+            this.S_TB_CheckTotal.Location = new System.Drawing.Point(953, 343);
             this.S_TB_CheckTotal.Name = "S_TB_CheckTotal";
             this.S_TB_CheckTotal.ReadOnly = true;
             this.S_TB_CheckTotal.Size = new System.Drawing.Size(162, 25);
@@ -731,7 +843,7 @@
             // S_TB_GovCh
             // 
             this.S_TB_GovCh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_GovCh.Location = new System.Drawing.Point(888, 377);
+            this.S_TB_GovCh.Location = new System.Drawing.Point(953, 377);
             this.S_TB_GovCh.Name = "S_TB_GovCh";
             this.S_TB_GovCh.Size = new System.Drawing.Size(162, 25);
             this.S_TB_GovCh.TabIndex = 14;
@@ -742,7 +854,7 @@
             // S_TB_PerCh
             // 
             this.S_TB_PerCh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.S_TB_PerCh.Location = new System.Drawing.Point(888, 411);
+            this.S_TB_PerCh.Location = new System.Drawing.Point(953, 411);
             this.S_TB_PerCh.Name = "S_TB_PerCh";
             this.S_TB_PerCh.Size = new System.Drawing.Size(162, 25);
             this.S_TB_PerCh.TabIndex = 15;
@@ -753,7 +865,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(720, 552);
+            this.label12.Location = new System.Drawing.Point(785, 552);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(121, 18);
             this.label12.TabIndex = 83;
@@ -762,7 +874,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(720, 518);
+            this.label11.Location = new System.Drawing.Point(785, 518);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(68, 18);
             this.label11.TabIndex = 82;
@@ -771,7 +883,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(730, 380);
+            this.label10.Location = new System.Drawing.Point(795, 380);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(97, 18);
             this.label10.TabIndex = 81;
@@ -780,7 +892,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(730, 414);
+            this.label9.Location = new System.Drawing.Point(796, 414);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 18);
             this.label9.TabIndex = 80;
@@ -789,7 +901,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(720, 450);
+            this.label8.Location = new System.Drawing.Point(785, 450);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(83, 18);
             this.label8.TabIndex = 79;
@@ -798,7 +910,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(720, 484);
+            this.label7.Location = new System.Drawing.Point(785, 484);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 18);
             this.label7.TabIndex = 78;
@@ -807,7 +919,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(720, 346);
+            this.label6.Location = new System.Drawing.Point(785, 346);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 18);
             this.label6.TabIndex = 77;
@@ -980,16 +1092,6 @@
             this.label3.Size = new System.Drawing.Size(86, 18);
             this.label3.TabIndex = 5;
             this.label3.Text = "Total Sales";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 11F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(76, 171);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 22);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Sales";
             // 
             // label2
             // 
@@ -1650,6 +1752,8 @@
             // Tab_AddPOPayment
             // 
             this.Tab_AddPOPayment.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Tab_AddPOPayment.Controls.Add(this.PO_TB_Inv);
+            this.Tab_AddPOPayment.Controls.Add(this.label1);
             this.Tab_AddPOPayment.Controls.Add(this.chkSearchByPo_Date);
             this.Tab_AddPOPayment.Controls.Add(this.PO_L_User);
             this.Tab_AddPOPayment.Controls.Add(this.label45);
@@ -1668,10 +1772,28 @@
             this.Tab_AddPOPayment.TabIndex = 2;
             this.Tab_AddPOPayment.Text = "PO Payment";
             // 
+            // PO_TB_Inv
+            // 
+            this.PO_TB_Inv.Location = new System.Drawing.Point(850, 68);
+            this.PO_TB_Inv.Name = "PO_TB_Inv";
+            this.PO_TB_Inv.Size = new System.Drawing.Size(213, 25);
+            this.PO_TB_Inv.TabIndex = 179;
+            this.PO_TB_Inv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PO_TB_Inv_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(716, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 18);
+            this.label1.TabIndex = 178;
+            this.label1.Text = "Invoice Number: ";
+            // 
             // chkSearchByPo_Date
             // 
             this.chkSearchByPo_Date.AutoSize = true;
-            this.chkSearchByPo_Date.Location = new System.Drawing.Point(102, 74);
+            this.chkSearchByPo_Date.Location = new System.Drawing.Point(55, 72);
             this.chkSearchByPo_Date.Name = "chkSearchByPo_Date";
             this.chkSearchByPo_Date.Size = new System.Drawing.Size(18, 17);
             this.chkSearchByPo_Date.TabIndex = 177;
@@ -1707,6 +1829,7 @@
             this.PO_DGV_POItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PO_DGV_POItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rowid,
+            this.InvNo,
             this.Branch,
             this.PODate,
             this.CustomerName,
@@ -1722,62 +1845,6 @@
             this.PO_DGV_POItems.Size = new System.Drawing.Size(1494, 903);
             this.PO_DGV_POItems.TabIndex = 174;
             this.PO_DGV_POItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PO_DGV_POItems_CellContentClick);
-            // 
-            // rowid
-            // 
-            this.rowid.HeaderText = "rowid";
-            this.rowid.Name = "rowid";
-            this.rowid.ReadOnly = true;
-            this.rowid.Visible = false;
-            // 
-            // Branch
-            // 
-            this.Branch.HeaderText = "Branch";
-            this.Branch.Name = "Branch";
-            this.Branch.ReadOnly = true;
-            // 
-            // PODate
-            // 
-            this.PODate.HeaderText = "PO Date";
-            this.PODate.Name = "PODate";
-            this.PODate.ReadOnly = true;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.HeaderText = "Customer Name";
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            // 
-            // POAmount
-            // 
-            this.POAmount.HeaderText = "PO Amount";
-            this.POAmount.Name = "POAmount";
-            this.POAmount.ReadOnly = true;
-            // 
-            // POStatus
-            // 
-            this.POStatus.HeaderText = "Status";
-            this.POStatus.Name = "POStatus";
-            this.POStatus.ReadOnly = true;
-            this.POStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.POStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // PaidAmount
-            // 
-            this.PaidAmount.HeaderText = "Balance";
-            this.PaidAmount.Name = "PaidAmount";
-            this.PaidAmount.ReadOnly = true;
-            // 
-            // AddEditPayment
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.AddEditPayment.DefaultCellStyle = dataGridViewCellStyle8;
-            this.AddEditPayment.HeaderText = "Action";
-            this.AddEditPayment.Name = "AddEditPayment";
-            this.AddEditPayment.ReadOnly = true;
-            this.AddEditPayment.Text = "Add/Edit Payment";
-            this.AddEditPayment.UseColumnTextForButtonValue = true;
             // 
             // PO_But_Reset
             // 
@@ -1801,16 +1868,16 @@
             // 
             // PO_TB_CustNameSearch
             // 
-            this.PO_TB_CustNameSearch.Location = new System.Drawing.Point(1026, 74);
+            this.PO_TB_CustNameSearch.Location = new System.Drawing.Point(1227, 68);
             this.PO_TB_CustNameSearch.Name = "PO_TB_CustNameSearch";
-            this.PO_TB_CustNameSearch.Size = new System.Drawing.Size(369, 25);
+            this.PO_TB_CustNameSearch.Size = new System.Drawing.Size(213, 25);
             this.PO_TB_CustNameSearch.TabIndex = 171;
             // 
             // label37
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(879, 77);
+            this.label37.Location = new System.Drawing.Point(1091, 72);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(125, 18);
             this.label37.TabIndex = 170;
@@ -1820,7 +1887,7 @@
             // 
             this.PO_DD_Branch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.PO_DD_Branch.FormattingEnabled = true;
-            this.PO_DD_Branch.Location = new System.Drawing.Point(569, 71);
+            this.PO_DD_Branch.Location = new System.Drawing.Point(414, 68);
             this.PO_DD_Branch.Name = "PO_DD_Branch";
             this.PO_DD_Branch.Size = new System.Drawing.Size(252, 25);
             this.PO_DD_Branch.Sorted = true;
@@ -1831,7 +1898,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(493, 74);
+            this.label25.Location = new System.Drawing.Point(340, 72);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(63, 18);
             this.label25.TabIndex = 168;
@@ -1843,9 +1910,9 @@
             this.PO_But_Date.Enabled = false;
             this.PO_But_Date.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PO_But_Date.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.PO_But_Date.Location = new System.Drawing.Point(217, 70);
+            this.PO_But_Date.Location = new System.Drawing.Point(153, 68);
             this.PO_But_Date.Name = "PO_But_Date";
-            this.PO_But_Date.Size = new System.Drawing.Size(218, 25);
+            this.PO_But_Date.Size = new System.Drawing.Size(149, 25);
             this.PO_But_Date.TabIndex = 167;
             this.PO_But_Date.TabStop = false;
             // 
@@ -1853,7 +1920,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(123, 74);
+            this.label26.Location = new System.Drawing.Point(76, 72);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(71, 18);
             this.label26.TabIndex = 166;
@@ -1882,6 +1949,16 @@
             this.Tab_MonthlySales.Size = new System.Drawing.Size(1506, 986);
             this.Tab_MonthlySales.TabIndex = 3;
             this.Tab_MonthlySales.Text = "Monthly Sales";
+            // 
+            // Su_L_RepName
+            // 
+            this.Su_L_RepName.AutoSize = true;
+            this.Su_L_RepName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Su_L_RepName.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.Su_L_RepName.Location = new System.Drawing.Point(521, 197);
+            this.Su_L_RepName.Name = "Su_L_RepName";
+            this.Su_L_RepName.Size = new System.Drawing.Size(0, 23);
+            this.Su_L_RepName.TabIndex = 15;
             // 
             // Su_DGV_Sales
             // 
@@ -2100,7 +2177,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.An_DGV_Items);
             this.tabPage1.Controls.Add(this.label47);
             this.tabPage1.Controls.Add(this.An_DD_Month);
             this.tabPage1.Controls.Add(this.An_DD_Year);
@@ -2119,11 +2196,31 @@
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Analysis";
             // 
+            // An_DGV_Items
+            // 
+            this.An_DGV_Items.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.An_DGV_Items.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Day,
+            this.TSales,
+            this.CSales,
+            this.CheSales,
+            this.Expenses,
+            this.CashDep,
+            this.EncDep,
+            this.CheckDep,
+            this.PODep,
+            this.CSalesvsCDep});
+            this.An_DGV_Items.Location = new System.Drawing.Point(-4, 228);
+            this.An_DGV_Items.Name = "An_DGV_Items";
+            this.An_DGV_Items.RowTemplate.Height = 24;
+            this.An_DGV_Items.Size = new System.Drawing.Size(1510, 486);
+            this.An_DGV_Items.TabIndex = 25;
+            // 
             // label47
             // 
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(564, 66);
+            this.label47.Location = new System.Drawing.Point(597, 66);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(57, 18);
             this.label47.TabIndex = 24;
@@ -2133,7 +2230,7 @@
             // 
             this.An_DD_Month.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.An_DD_Month.FormattingEnabled = true;
-            this.An_DD_Month.Location = new System.Drawing.Point(643, 63);
+            this.An_DD_Month.Location = new System.Drawing.Point(676, 63);
             this.An_DD_Month.Name = "An_DD_Month";
             this.An_DD_Month.Size = new System.Drawing.Size(134, 25);
             this.An_DD_Month.TabIndex = 23;
@@ -2142,7 +2239,7 @@
             // 
             this.An_DD_Year.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.An_DD_Year.FormattingEnabled = true;
-            this.An_DD_Year.Location = new System.Drawing.Point(392, 63);
+            this.An_DD_Year.Location = new System.Drawing.Point(425, 63);
             this.An_DD_Year.Name = "An_DD_Year";
             this.An_DD_Year.Size = new System.Drawing.Size(134, 25);
             this.An_DD_Year.TabIndex = 22;
@@ -2150,7 +2247,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(1018, 95);
+            this.checkBox1.Location = new System.Drawing.Point(1051, 95);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(124, 21);
             this.checkBox1.TabIndex = 21;
@@ -2159,7 +2256,7 @@
             // 
             // An_But_Reset
             // 
-            this.An_But_Reset.Location = new System.Drawing.Point(785, 131);
+            this.An_But_Reset.Location = new System.Drawing.Point(786, 131);
             this.An_But_Reset.Name = "An_But_Reset";
             this.An_But_Reset.Size = new System.Drawing.Size(123, 36);
             this.An_But_Reset.TabIndex = 20;
@@ -2168,18 +2265,19 @@
             // 
             // An_But_Search
             // 
-            this.An_But_Search.Location = new System.Drawing.Point(652, 131);
+            this.An_But_Search.Location = new System.Drawing.Point(653, 131);
             this.An_But_Search.Name = "An_But_Search";
             this.An_But_Search.Size = new System.Drawing.Size(123, 36);
             this.An_But_Search.TabIndex = 19;
             this.An_But_Search.Text = "Search";
             this.An_But_Search.UseVisualStyleBackColor = true;
+            this.An_But_Search.Click += new System.EventHandler(this.An_But_Search_Click);
             // 
             // An_DD_Branch
             // 
             this.An_DD_Branch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.An_DD_Branch.FormattingEnabled = true;
-            this.An_DD_Branch.Location = new System.Drawing.Point(890, 64);
+            this.An_DD_Branch.Location = new System.Drawing.Point(923, 64);
             this.An_DD_Branch.Name = "An_DD_Branch";
             this.An_DD_Branch.Size = new System.Drawing.Size(252, 25);
             this.An_DD_Branch.TabIndex = 18;
@@ -2209,7 +2307,7 @@
             // 
             this.label50.AutoSize = true;
             this.label50.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.Location = new System.Drawing.Point(806, 67);
+            this.label50.Location = new System.Drawing.Point(839, 67);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(63, 18);
             this.label50.TabIndex = 15;
@@ -2219,41 +2317,73 @@
             // 
             this.label51.AutoSize = true;
             this.label51.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.Location = new System.Drawing.Point(321, 66);
+            this.label51.Location = new System.Drawing.Point(354, 66);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(44, 18);
             this.label51.TabIndex = 14;
             this.label51.Text = "Year:";
             // 
-            // Su_L_RepName
+            // rowid
             // 
-            this.Su_L_RepName.AutoSize = true;
-            this.Su_L_RepName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Su_L_RepName.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.Su_L_RepName.Location = new System.Drawing.Point(521, 197);
-            this.Su_L_RepName.Name = "Su_L_RepName";
-            this.Su_L_RepName.Size = new System.Drawing.Size(0, 23);
-            this.Su_L_RepName.TabIndex = 15;
+            this.rowid.HeaderText = "rowid";
+            this.rowid.Name = "rowid";
+            this.rowid.ReadOnly = true;
+            this.rowid.Visible = false;
             // 
-            // dataGridView1
+            // InvNo
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Day,
-            this.TSales,
-            this.CSales,
-            this.CheSales,
-            this.Expenses,
-            this.CashDep,
-            this.EncDep,
-            this.CheckDep,
-            this.PODep,
-            this.CSalesvsCDep});
-            this.dataGridView1.Location = new System.Drawing.Point(-4, 228);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1510, 486);
-            this.dataGridView1.TabIndex = 25;
+            this.InvNo.HeaderText = "Invoice No.";
+            this.InvNo.Name = "InvNo";
+            this.InvNo.ReadOnly = true;
+            // 
+            // Branch
+            // 
+            this.Branch.HeaderText = "Branch";
+            this.Branch.Name = "Branch";
+            this.Branch.ReadOnly = true;
+            // 
+            // PODate
+            // 
+            this.PODate.HeaderText = "PO Date";
+            this.PODate.Name = "PODate";
+            this.PODate.ReadOnly = true;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.HeaderText = "Customer Name";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            // 
+            // POAmount
+            // 
+            this.POAmount.HeaderText = "PO Amount";
+            this.POAmount.Name = "POAmount";
+            this.POAmount.ReadOnly = true;
+            // 
+            // POStatus
+            // 
+            this.POStatus.HeaderText = "Status";
+            this.POStatus.Name = "POStatus";
+            this.POStatus.ReadOnly = true;
+            this.POStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.POStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // PaidAmount
+            // 
+            this.PaidAmount.HeaderText = "Balance";
+            this.PaidAmount.Name = "PaidAmount";
+            this.PaidAmount.ReadOnly = true;
+            // 
+            // AddEditPayment
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.AddEditPayment.DefaultCellStyle = dataGridViewCellStyle1;
+            this.AddEditPayment.HeaderText = "Action";
+            this.AddEditPayment.Name = "AddEditPayment";
+            this.AddEditPayment.ReadOnly = true;
+            this.AddEditPayment.Text = "Add/Edit Payment";
+            this.AddEditPayment.UseColumnTextForButtonValue = true;
             // 
             // Day
             // 
@@ -2320,7 +2450,7 @@
             // 
             // CSalesvsCDep
             // 
-            this.CSalesvsCDep.HeaderText = "Cash Sales vs Cash Deposit";
+            this.CSalesvsCDep.HeaderText = "Cash Discrepancy";
             this.CSalesvsCDep.Name = "CSalesvsCDep";
             this.CSalesvsCDep.ReadOnly = true;
             this.CSalesvsCDep.Width = 200;
@@ -2348,7 +2478,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Su_DGV_Sales)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.An_DGV_Items)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2376,7 +2506,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox S_TB_Charge;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox S_TB_POAmt10;
@@ -2531,7 +2660,23 @@
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label Su_L_RepName;
+        private System.Windows.Forms.DataGridView An_DGV_Items;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.TextBox S_TB_Inv10;
+        private System.Windows.Forms.TextBox S_TB_Inv9;
+        private System.Windows.Forms.TextBox S_TB_Inv6;
+        private System.Windows.Forms.TextBox S_TB_Inv7;
+        private System.Windows.Forms.TextBox S_TB_Inv8;
+        private System.Windows.Forms.TextBox S_TB_Inv5;
+        private System.Windows.Forms.TextBox S_TB_Inv4;
+        private System.Windows.Forms.TextBox S_TB_Inv1;
+        private System.Windows.Forms.TextBox S_TB_Inv2;
+        private System.Windows.Forms.TextBox S_TB_Inv3;
+        private System.Windows.Forms.TextBox PO_TB_Inv;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn rowid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Branch;
         private System.Windows.Forms.DataGridViewTextBoxColumn PODate;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
@@ -2539,8 +2684,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn POStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn PaidAmount;
         private System.Windows.Forms.DataGridViewButtonColumn AddEditPayment;
-        private System.Windows.Forms.Label Su_L_RepName;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Day;
         private System.Windows.Forms.DataGridViewTextBoxColumn TSales;
         private System.Windows.Forms.DataGridViewTextBoxColumn CSales;

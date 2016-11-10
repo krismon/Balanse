@@ -154,43 +154,43 @@ namespace Balanse
 
             if (!IsEmpty(S_TB_POName1.Text) && !IsEmpty(S_TB_POAmt1.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName1.Text, Convert.ToDouble(S_TB_POAmt1.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName1.Text, Convert.ToDouble(S_TB_POAmt1.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv1.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName2.Text) && !IsEmpty(S_TB_POAmt2.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo, SalesID, DATE, BRANCH, S_TB_POName2.Text, Convert.ToDouble(S_TB_POAmt2.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo, SalesID, DATE, BRANCH, S_TB_POName2.Text, Convert.ToDouble(S_TB_POAmt2.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv2.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName3.Text) && !IsEmpty(S_TB_POAmt3.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo, SalesID, DATE, BRANCH, S_TB_POName3.Text, Convert.ToDouble(S_TB_POAmt3.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo, SalesID, DATE, BRANCH, S_TB_POName3.Text, Convert.ToDouble(S_TB_POAmt3.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv3.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName4.Text) && !IsEmpty(S_TB_POAmt4.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName4.Text, Convert.ToDouble(S_TB_POAmt4.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName4.Text, Convert.ToDouble(S_TB_POAmt4.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv4.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName5.Text) && !IsEmpty(S_TB_POAmt5.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName5.Text, Convert.ToDouble(S_TB_POAmt5.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName5.Text, Convert.ToDouble(S_TB_POAmt5.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv5.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName6.Text) && !IsEmpty(S_TB_POAmt6.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName6.Text, Convert.ToDouble(S_TB_POAmt6.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName6.Text, Convert.ToDouble(S_TB_POAmt6.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv6.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName7.Text) && !IsEmpty(S_TB_POAmt7.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName7.Text, Convert.ToDouble(S_TB_POAmt7.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName7.Text, Convert.ToDouble(S_TB_POAmt7.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv7.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName8.Text) && !IsEmpty(S_TB_POAmt8.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName8.Text, Convert.ToDouble(S_TB_POAmt8.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName8.Text, Convert.ToDouble(S_TB_POAmt8.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv8.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName9.Text) && !IsEmpty(S_TB_POAmt9.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName9.Text, Convert.ToDouble(S_TB_POAmt9.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName9.Text, Convert.ToDouble(S_TB_POAmt9.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv9.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName10.Text) && !IsEmpty(S_TB_POAmt10.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo, SalesID, DATE, BRANCH, S_TB_POName10.Text, Convert.ToDouble(S_TB_POAmt10.Text), POStatus, REC_DT, ENCODED_BY);
+                InsertSalesTransactionConn.InsertPO(RepNo, SalesID, DATE, BRANCH, S_TB_POName10.Text, Convert.ToDouble(S_TB_POAmt10.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv10.Text, REC_DT);
             }
             return SalesID;
         }
@@ -467,6 +467,16 @@ namespace Balanse
             S_TB_POName8.Text = "";
             S_TB_POName9.Text = "";
             S_TB_POName10.Text = "";
+            S_TB_Inv1.Text = "";
+            S_TB_Inv2.Text = "";
+            S_TB_Inv3.Text = "";
+            S_TB_Inv4.Text = "";
+            S_TB_Inv5.Text = "";
+            S_TB_Inv6.Text = "";
+            S_TB_Inv7.Text = "";
+            S_TB_Inv8.Text = "";
+            S_TB_Inv9.Text = "";
+            S_TB_Inv10.Text = "";
             S_TB_Charge.Text = "";
             S_TB_RunTotal.Text = "";
         }
@@ -570,11 +580,12 @@ namespace Balanse
         {
             PO_DD_Branch.Text = "";
             PO_TB_CustNameSearch.Text = "";
+            PO_TB_Inv.Text = "";
         }
 
         public Boolean PopulatePODataGrid()
         {
-            ResetPOSearch();
+            //ResetPOSearch();
             this.PO_DGV_POItems.DataSource = null;
             this.PO_DGV_POItems.Rows.Clear();
             
@@ -584,7 +595,7 @@ namespace Balanse
             if (PO_TB_CustNameSearch.Text.Length > 0)
             {
                 String CustName = PO_TB_CustNameSearch.Text;
-                whereClause += "UPPER(CUSTOMER_NAME) LIKE UPPER(' " +(PO_TB_CustNameSearch.Text)+ "')";
+                whereClause += "UPPER(A.CUSTOMER_NAME) LIKE UPPER('" +(PO_TB_CustNameSearch.Text)+"')";
             }
             
             if (chkSearchByPo_Date.Checked)
@@ -605,6 +616,14 @@ namespace Balanse
                 }
                 whereClause += "A.BRANCH = '" + PO_DD_Branch.Text + "'";
             }
+            if(PO_TB_Inv.Text.Length>0)
+            {
+                if (whereClause.Length>0)
+                {
+                    whereClause += " AND ";
+                }
+                whereClause += "A.INVOICE_NO=" + PO_TB_Inv.Text;
+            }
             if (whereClause.Length > 0)
             {
                 whereClause = " WHERE " + whereClause;
@@ -613,71 +632,81 @@ namespace Balanse
             BalanseConn POConn = new BalanseConn();
             DataTable POItems = POConn.SelectQuery(@"SELECT
                                                A.ROWID,
+                                               A.INVOICE_NO,
                                                A.BRANCH, 
                                                A.PO_DATE,
                                                A.CUSTOMER_NAME, 
                                                A.PO_AMOUNT,
                                                A.PO_STATUS,
                                                SUM(B.PAID_AMOUNT)
-                                               FROM PURCHASE_ORDERS A LEFT JOIN PO_PAYMENTS B
+                                               FROM PURCHASE_ORDERS A LEFT JOIN PO_PAYMENTS B 
                                                ON
-                                                    a.rowid = b.po_id" +  
+                                                    A.PO_DATE=B.PO_DATE AND
+						                            A.INVOICE_NO=B.INVOICE_NO AND
+					                                A.BRANCH=B.BRANCH"
+                                                        +  
                                                     //A.PO_DATE = B.PO_DATE 
                                                     //AND A.BRANCH = B.BRANCH 
                                                     //AND A.CUSTOMER_NAME = B.CUSTOMER_NAME 
                                                     //AND A.PO_AMOUNT = B.PO_AMOUNT" +
-                                                    whereClause
+                                                    whereClause + " GROUP BY A.BRANCH, A.CUSTOMER_NAME;"
                                                );
-            
+
             if (POItems.Rows.Count < 1)
             {
                 IsSuccess = false;
-                MessageBox.Show("No records match with the details provided.");
+                MessageBox.Show("No records match with the details provided." + whereClause);
+                PO_TB_CustNameSearch.Text = "";
 
             }
             else
             foreach (DataRow row in POItems.Rows)
                 {
                     string rowid = row[0].ToString();
-                    string Branch = row[1].ToString();
-                    string PO_Date = DateTime.Parse(row[2].ToString()).ToString("MM/dd/yyyy");
-                    string CustomerName = row[3].ToString();
+                    string invoice = row[1].ToString();
+                    string Branch = row[2].ToString();
+                    string PO_Date = DateTime.Parse(row[3].ToString()).ToString("MM/dd/yyyy");
+                    string CustomerName = row[4].ToString();
                     
-                    decimal POAmount = Decimal.Parse(row[4].ToString());
-                    string POStatus = row[5].ToString();
+                    decimal POAmount = Decimal.Parse(row[5].ToString());
+                    string POStatus = row[6].ToString();
                     
                     string PayType = "";
-                    if (row[6]!=DBNull.Value)
+                    if (row[7]!=DBNull.Value)
                     {
-                        PayType = row[6].ToString();
+                        PayType = row[7].ToString();
                     }
                     else PayType = "";
                     
                     decimal PayAmount = 0;
-                    if (row[6] != DBNull.Value)
+                    if (row[7] != DBNull.Value)
                     {
-                       PayAmount = Decimal.Parse(row[6].ToString());
+                       PayAmount = Decimal.Parse(row[7].ToString());
                     }
 
                     /*string PayDate="";
                     if (row[8] != DBNull.Value)
                     {
-                        PayDate = DateTime.Parse(row[8].ToString()).ToString("MM/dd/yyyy");
+                        PayDate =
+                        DateTime.Parse(row[8].ToString()).ToString("MM/dd/yyyy");
                     }
 
                     else PayDate = "";*/
-                   
+
 
                     PO_DGV_POItems.Rows.Add(
                         rowid,
+                        invoice,
                         Branch,
                         PO_Date,
                         CustomerName,
                         POAmount.ToString("#,##0.00"),
                         POStatus,
-                        (POAmount-PayAmount).ToString("#,##0.00"));                     
+                        (POAmount-PayAmount).ToString("#,##0.00"));
+                    ResetPOSearch();
                 }
-            return IsSuccess;          
+            return IsSuccess;
+                    
             
         }
         private void S_TB_Cash_KeyPress(object sender, KeyPressEventArgs e)
@@ -1838,7 +1867,9 @@ namespace Balanse
                 if (SalesItems.Rows.Count < 1)
                 {
                     IsSuccess = false;
+                    Su_L_RepName.Text = "";
                     MessageBox.Show("No records were found.");
+                    
                 }
                 else
                 {
@@ -1923,7 +1954,9 @@ namespace Balanse
                 {
                     IsSuccess = false;
                     ResetMonthlySalesSearch();
+                    Su_L_RepName.Text = "";
                     MessageBox.Show("No records found.");
+                    
                 }
                 else
                 {
@@ -2019,6 +2052,47 @@ namespace Balanse
             Su_DD_Month.Text = "";
             Su_DD_Year.Text = "";
         }
-    }
 
+        private void PO_TB_Inv_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+                MessageBox.Show("Numeric input only");
+            }
+        }
+
+        private void An_But_Search_Click(object sender, EventArgs e)
+        {
+
+        }
+        public Boolean PopulateAnalysis()
+        {
+            select strftime('%d', s.date), 
+sum(s.total_sales), 
+sum(s.cash), 
+sum(s.'check'), 
+sum(e.pcf),
+sum(e.others),
+sum(e.wtx),
+sum(e.refund),
+sum(d.cash),
+sum(d.enc_check),
+sum(d.'check'),
+SUM(PP.PAID_AMOUNT)
+from sales s LEFT JOIN expenses e
+ON s.date = e.date
+and s.branch = e.branch
+SALES S LEFT JOIN DEPOSIT_SUMMARY D
+ON S.DATE = D.DATE
+AND S.BRANCH = D.BRANCH
+SALES S LEFT JOIN PO_PAYMENTS PP
+ON S.DATE = PP.PAYMENT_DATE
+AND S.BRANCH = PP.BRANCH
+WHERE
+strftime('%Y', s.date) = '2016'
+and case strftime('%m', s.date) when '01' then 'JANUARY' when '02' then 'FEBRUARY' when '03' then 'MARCH' when '04' then 'APRIL' when '05' then 'MAY' when '06' then 'JUNE' when '07' then 'JULY' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END = 'SEPTEMBER' group by strftime('%d', s.date)
+AND PP.DEPOSIT_TAG = 1
+        }
+    }
 }
