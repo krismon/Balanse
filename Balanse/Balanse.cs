@@ -54,38 +54,79 @@ namespace Balanse
             An_DD_Branch.ValueMember = "Key";
 
             //month drop down
-            DataTable mon = conn.SelectQuery("select distinct case strftime('%m', date) when '01' then 'JAN' when '02' then 'FEB' when '03' then 'MAR' when '04' then 'APR' when '05' then 'MAY' when '06' then 'JUN' when '07' then 'JUL' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' end as Month from sales order by strftime('%m', date) asc");
+            DataTable mon = conn.SelectQuery("select distinct case strftime('%m', date) when '01' then 'JANUARY' when '02' then 'FEBRUARY' when '03' then 'MARCH' when '04' then 'APRIL' when '05' then 'MAY' when '06' then 'JUNE' when '07' then 'JULY' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' end as Month from sales order by strftime('%m', date) asc");
             Dictionary<String, String> MonSelection = new Dictionary<string, string>();
-            int j = 0;
-            foreach (DataRow row in mon.Rows)
+            if (mon.Rows.Count > 0)
             {
-                MonSelection.Add(j.ToString(), row[0].ToString());
-                j++;
+                int j = 0;
+                foreach (DataRow row in mon.Rows)
+                {
+                    MonSelection.Add(j.ToString(), row[0].ToString());
+                    j++;
+                }
+                Su_DD_Month.DataSource = new BindingSource(MonSelection, null);
+                An_DD_Month.DataSource = new BindingSource(MonSelection, null);
+                Su_DD_Month.DisplayMember = "Value";
+                An_DD_Month.DisplayMember = "Value";
+                Su_DD_Month.ValueMember = "Key";
+                An_DD_Month.ValueMember = "Key";
             }
-            Su_DD_Month.DataSource = new BindingSource(MonSelection, null);
-            An_DD_Month.DataSource = new BindingSource(MonSelection, null);
-            Su_DD_Month.DisplayMember = "Value";
-            An_DD_Month.DisplayMember = "Value";
-            Su_DD_Month.ValueMember = "Key";
-            An_DD_Month.ValueMember = "Key";
+            else
+            {
+                MonSelection.Add("0", "JANUARY");
+                MonSelection.Add("1", "FEBRUARY");
+                MonSelection.Add("2", "MARCH");
+                MonSelection.Add("3", "APRIL");
+                MonSelection.Add("4", "MAY");
+                MonSelection.Add("5", "JUNE");
+                MonSelection.Add("6", "JULY");
+                MonSelection.Add("7", "AUGUST");
+                MonSelection.Add("8", "SEPTEMBER");
+                MonSelection.Add("9", "OCTOBER");
+                MonSelection.Add("10", "NOVEMBER");
+                MonSelection.Add("11", "DECEMBER");
+                Su_DD_Month.DataSource = new BindingSource(MonSelection, null);
+                An_DD_Month.DataSource = new BindingSource(MonSelection, null);
+                Su_DD_Month.DisplayMember = "Value";
+                An_DD_Month.DisplayMember = "Value";
+                Su_DD_Month.ValueMember = "Key";
+                An_DD_Month.ValueMember = "Key";
+            }
+         
             //year drop down
             DataTable year = conn.SelectQuery("select distinct strftime('%Y', date) from sales");
             Dictionary<String, String> YrSelection = new Dictionary<string, string>();
-            int k = 0;
-            foreach (DataRow row in year.Rows)
+            if ( year.Rows.Count > 0)
             {
-                YrSelection.Add(k.ToString(), row[0].ToString());
-                k++;
+                int k = 0;
+                foreach (DataRow row in year.Rows)
+                {
+                    YrSelection.Add(k.ToString(), row[0].ToString());
+                    k++;
+                }
+                Su_DD_Year.DataSource = new BindingSource(YrSelection, null);
+                An_DD_Year.DataSource = new BindingSource(YrSelection, null);
+                Su_DD_Year.DisplayMember = "Value";
+                An_DD_Year.DisplayMember = "Value";
+                Su_DD_Year.ValueMember = "Key";
+                An_DD_Year.ValueMember = "Key";
             }
-            Su_DD_Year.DataSource = new BindingSource(YrSelection, null);
-            An_DD_Year.DataSource = new BindingSource(YrSelection, null);
-            Su_DD_Year.DisplayMember = "Value";
-            An_DD_Year.DisplayMember = "Value";
-            Su_DD_Year.ValueMember = "Key";
-            An_DD_Year.ValueMember = "Key";
+            else
+            {
+                YrSelection.Add("0", "2014");
+                YrSelection.Add("1", "2015");
+                YrSelection.Add("2", "2016");
+                Su_DD_Year.DataSource = new BindingSource(YrSelection, null);
+                An_DD_Year.DataSource = new BindingSource(YrSelection, null);
+                Su_DD_Year.DisplayMember = "Value";
+                An_DD_Year.DisplayMember = "Value";
+                Su_DD_Year.ValueMember = "Key";
+                An_DD_Year.ValueMember = "Key";
+            }
+            
 
 
-        }    
+        }
 
         //to check if textbox is empty
         public Boolean IsEmpty(string item)
@@ -96,23 +137,11 @@ namespace Balanse
             }
             else return false;
         }
-        //to check if RepNum is unique
-        public Boolean RepNoExists(string Table, int RepNo, string Date, string Branch)
-        {
-            BalanseConn conn = new BalanseConn();
-
-            DataTable RepNums = conn.SelectQuery("SELECT REPORT_NO FROM " +Table+ " WHERE DATE= '"+Date+ "' AND REPORT_NO= " +RepNo+" AND BRANCH= '"+Branch+"'");
-            if (RepNums.Rows.Count > 0)
-            {
-                return true;
-            }
-            else return false;
-        }
+       
 
         private int AddSalesTransaction()
         {
             BalanseConn InsertSalesTransactionConn = new BalanseConn();
-            int RepNo = Convert.ToInt32(S_TB_RepNum.Text);
             DateTime DATE = S_But_Date.Value.Date;
             String BRANCH = S_DD_Branch.Text;
             Double TOTAL_SALES = IsEmpty(S_TB_Total.Text) ? 0.00 : Convert.ToDouble(S_TB_Total.Text);
@@ -147,57 +176,56 @@ namespace Balanse
             String COMMENTS = IsEmpty(S_RTB_Comm.Text) ? "" : S_RTB_Comm.Text;
             DateTime REC_DT = DateTime.Now;
             String ENCODED_BY = S_L_User.Text;
-            int SalesID = InsertSalesTransactionConn.InsertSales(RepNo, DATE, BRANCH, TOTAL_SALES, CASH, CHARGE, CREDIT_CARD, CREDIT_CARD1, CREDIT_CARD2, CREDIT_CARD3, CREDIT_CARD4, CREDIT_CARD5, CREDIT_CARD6, CREDIT_CARD7, CREDIT_CARD8, CREDIT_CARD9, CREDIT_CARD10,
+            int SalesID = InsertSalesTransactionConn.InsertSales(DATE, BRANCH, TOTAL_SALES, CASH, CHARGE, CREDIT_CARD, CREDIT_CARD1, CREDIT_CARD2, CREDIT_CARD3, CREDIT_CARD4, CREDIT_CARD5, CREDIT_CARD6, CREDIT_CARD7, CREDIT_CARD8, CREDIT_CARD9, CREDIT_CARD10,
                 CHECK, GOV_CHECK, PER_CHECK, GIFT_CHECK, COUPON, TAX_CERT, PO, COMMENTS, REC_DT, ENCODED_BY);
             
             String POStatus = "Unpaid";
 
             if (!IsEmpty(S_TB_POName1.Text) && !IsEmpty(S_TB_POAmt1.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName1.Text, Convert.ToDouble(S_TB_POAmt1.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv1.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName1.Text, Convert.ToDouble(S_TB_POAmt1.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv1.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName2.Text) && !IsEmpty(S_TB_POAmt2.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo, SalesID, DATE, BRANCH, S_TB_POName2.Text, Convert.ToDouble(S_TB_POAmt2.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv2.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName2.Text, Convert.ToDouble(S_TB_POAmt2.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv2.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName3.Text) && !IsEmpty(S_TB_POAmt3.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo, SalesID, DATE, BRANCH, S_TB_POName3.Text, Convert.ToDouble(S_TB_POAmt3.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv3.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName3.Text, Convert.ToDouble(S_TB_POAmt3.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv3.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName4.Text) && !IsEmpty(S_TB_POAmt4.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName4.Text, Convert.ToDouble(S_TB_POAmt4.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv4.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName4.Text, Convert.ToDouble(S_TB_POAmt4.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv4.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName5.Text) && !IsEmpty(S_TB_POAmt5.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName5.Text, Convert.ToDouble(S_TB_POAmt5.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv5.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName5.Text, Convert.ToDouble(S_TB_POAmt5.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv5.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName6.Text) && !IsEmpty(S_TB_POAmt6.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName6.Text, Convert.ToDouble(S_TB_POAmt6.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv6.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName6.Text, Convert.ToDouble(S_TB_POAmt6.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv6.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName7.Text) && !IsEmpty(S_TB_POAmt7.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName7.Text, Convert.ToDouble(S_TB_POAmt7.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv7.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName7.Text, Convert.ToDouble(S_TB_POAmt7.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv7.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName8.Text) && !IsEmpty(S_TB_POAmt8.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName8.Text, Convert.ToDouble(S_TB_POAmt8.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv8.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName8.Text, Convert.ToDouble(S_TB_POAmt8.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv8.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName9.Text) && !IsEmpty(S_TB_POAmt9.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo,SalesID, DATE, BRANCH, S_TB_POName9.Text, Convert.ToDouble(S_TB_POAmt9.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv9.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName9.Text, Convert.ToDouble(S_TB_POAmt9.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv9.Text, REC_DT);
             }
             if (!IsEmpty(S_TB_POName10.Text) && !IsEmpty(S_TB_POAmt10.Text))
             {
-                InsertSalesTransactionConn.InsertPO(RepNo, SalesID, DATE, BRANCH, S_TB_POName10.Text, Convert.ToDouble(S_TB_POAmt10.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv10.Text, REC_DT);
+                InsertSalesTransactionConn.InsertPO(SalesID, DATE, BRANCH, S_TB_POName10.Text, Convert.ToDouble(S_TB_POAmt10.Text), POStatus, REC_DT, ENCODED_BY, S_TB_Inv10.Text, REC_DT);
             }
             return SalesID;
         }
         private int AddExpenses()
         {
             BalanseConn InsertExpTransactionConn = new BalanseConn();
-            int REPNO = Convert.ToInt32(ED_TB_ReportNum.Text);
             DateTime DATE = ED_But_Date.Value.Date;
             String BRANCH = ED_DD_Branch.Text;
             Double PCF1 = IsEmpty(ED_TB_PCF1.Text) ? 0.00 : Convert.ToDouble(ED_TB_PCF1.Text);
@@ -225,7 +253,7 @@ namespace Balanse
             String EXP_COMMENTS = ED_RTB_ExpComm.Text;
             DateTime REC_DT = DateTime.Now;
             String ENCODED_BY = ED_L_User.Text;
-            int ExpenseID = InsertExpTransactionConn.InsertExpenses(REPNO, DATE, BRANCH, PCF, PCF1, PCF2, PCF3, PCF4, WTX, REFUND, OTHERS, OTHERS1, OTHERS2, OTHERS3, OTHERS4,TOTAL_EXPENSES, EXP_COMMENTS, REC_DT, ENCODED_BY);
+            int ExpenseID = InsertExpTransactionConn.InsertExpenses(DATE, BRANCH, PCF, PCF1, PCF2, PCF3, PCF4, WTX, REFUND, OTHERS, OTHERS1, OTHERS2, OTHERS3, OTHERS4,TOTAL_EXPENSES, EXP_COMMENTS, REC_DT, ENCODED_BY);
             return ExpenseID;
 
 
@@ -233,7 +261,7 @@ namespace Balanse
         private int AddDeposit()
         {
             BalanseConn InsertDepTransactionConn = new BalanseConn();
-            int REPNO = Convert.ToInt32(ED_TB_ReportNum.Text);
+            
 
             DateTime DATE = ED_But_Date.Value.Date;
             String BRANCH = ED_DD_Branch.Text;
@@ -261,55 +289,55 @@ namespace Balanse
             DateTime REC_DT = DateTime.Now;
             String ENCODED_BY = ED_L_User.Text;
             // insert TOTALS to DEPOSIT SUMMARY
-            int DepID=InsertDepTransactionConn.InsertDepositSummary(REPNO, DATE, BRANCH, CASHDEP, ENC, CHECKDEP, TOTAL_DEP, DEP_COMMENTS, REC_DT, ENCODED_BY, 0);
+            int DepID=InsertDepTransactionConn.InsertDepositSummary(DATE, BRANCH, CASHDEP, ENC, CHECKDEP, TOTAL_DEP, DEP_COMMENTS, REC_DT, ENCODED_BY, 0);
             //insert DETAILS to DEPOSIT
             if (!IsEmpty(ED_TB_Cash1.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP1, REC_DT, ENCODED_BY, 0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "CASH", CASHDEP1, REC_DT, ENCODED_BY, 0);
             }
             if (!IsEmpty(ED_TB_Cash2.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP2, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "CASH", CASHDEP2, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Cash3.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP3, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "CASH", CASHDEP3, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Cash4.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CASH", CASHDEP4, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "CASH", CASHDEP4, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_EncCh1.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC1, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "ENC CHECK", ENC1, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_EncCh2.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC2, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "ENC CHECK", ENC2, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_EncCh3.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC3, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "ENC CHECK", ENC3, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_EncCh4.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "ENC CHECK", ENC4, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "ENC CHECK", ENC4, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Ch1.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP1, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "CHECK", CHECKDEP1, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Ch2.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP2, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "CHECK", CHECKDEP2, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Ch3.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP3, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "CHECK", CHECKDEP3, REC_DT, ENCODED_BY,0);
             }
             if (!IsEmpty(ED_TB_Ch4.Text))
             {
-                InsertDepTransactionConn.InsertDeposit(DepID, REPNO, DATE, BRANCH, "CHECK", CHECKDEP4, REC_DT, ENCODED_BY,0);
+                InsertDepTransactionConn.InsertDeposit(DepID, DATE, BRANCH, "CHECK", CHECKDEP4, REC_DT, ENCODED_BY,0);
             }
             return DepID;
             
@@ -317,15 +345,12 @@ namespace Balanse
         //Sales Tab Add Sales Button
         private void S_But_Add_Click(object sender, EventArgs e)
         {
-            if (!IsEmpty(S_TB_Total.Text) && !IsEmpty(S_TB_RepNum.Text))
+            if (!IsEmpty(S_TB_Total.Text))
             {
-                int RepNum = Convert.ToInt32(S_TB_RepNum.Text);
                 string Date = (S_But_Date.Value.ToString("yyyy-MM-dd"));
                 string SalesDate = Date + " 00:00:00";
                 String Branch = S_DD_Branch.Text;
 
-                if (!RepNoExists("SALES", RepNum, SalesDate, Branch))
-                {
                     if (S_TB_Total.Text == S_TB_RunTotal.Text)
                     {
                         AddSalesTransaction();
@@ -344,31 +369,20 @@ namespace Balanse
                         }
 
                     }
-                }
-                else MessageBox.Show("Report Number already exists for that date and branch");
             }
             else MessageBox.Show("Total Sales and Report Number cannot be empty");
         }
         //Add Expenses and Deposits
         private void ED_B_Add_Click(object sender, EventArgs e)
         {
-
-            if (!IsEmpty(ED_TB_ReportNum.Text))
-            {
-                int RepNum = Convert.ToInt32(ED_TB_ReportNum.Text);
-                string Date = ED_But_Date.Value.ToString("yyyy-MM-dd");
-                string DepExpDate = Date + " 00:00:00";
-                string Branch = ED_DD_Branch.Text;
-                if (!RepNoExists("DEPOSIT_SUMMARY", RepNum, DepExpDate, Branch))
-                {
-                    AddExpenses();
-                    AddDeposit();
-                    MessageBox.Show("Record added");
-                    ResetExpensesDeposits();
-                }
-                else MessageBox.Show("Report Number already exists for this date and branch");            
-            }
-            else MessageBox.Show("Report Number cannot be Empty");
+                
+            string Date = ED_But_Date.Value.ToString("yyyy-MM-dd");
+            string DepExpDate = Date + " 00:00:00";
+            string Branch = ED_DD_Branch.Text;
+            AddExpenses();
+            AddDeposit();
+            MessageBox.Show("Record added");
+            ResetExpensesDeposits();
         }
 
         //Sales Tab Update Running Total
@@ -425,7 +439,7 @@ namespace Balanse
         //Sales Tab Reset Text Boxes
         private void ResetSales()
         {
-            S_TB_RepNum.Text = "";
+            
             S_TB_Cash.Text = "";
             S_TB_Total.Text = "";
             S_TB_CCTotal.Text = "";
@@ -542,7 +556,7 @@ namespace Balanse
         //Reset Expenses and Deposits Text Boxes
         public void ResetExpensesDeposits()
         {
-            ED_TB_ReportNum.Text = "";
+            
             ED_TB_PCF1.Text="";
             ED_TB_PCF2.Text="";
             ED_TB_PCF3.Text="";
@@ -655,7 +669,7 @@ namespace Balanse
             if (POItems.Rows.Count < 1)
             {
                 IsSuccess = false;
-                MessageBox.Show("No records match with the details provided." + whereClause);
+                MessageBox.Show("No records match with the details provided.");
                 PO_TB_CustNameSearch.Text = "";
 
             }
@@ -1863,7 +1877,30 @@ namespace Balanse
             BalanseConn SummaryConn = new BalanseConn();
             if (Su_CB_All.Checked)
             {
-                DataTable SalesItems = SummaryConn.SelectQuery(@"select strftime('%d',date), sum(total_sales), sum(cash), sum(charge), sum(credit_card), sum('check'), sum(gift_check), sum(coupon), sum(tax_cert),sum(po), comments from sales where strftime('%Y',date)='" + Su_DD_Year.Text + "' and case strftime('%m', date) when '01' then 'JANUARY' when '02' then 'FEBRUARY' when '03' then 'MARCH' when '04' then 'APRIL' when '05' then 'MAY' when '06' then 'JUNE' when '07' then 'JULY' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END ='" + Su_DD_Month.Text + "' group by strftime('%d',date)");
+                DataTable SalesItems = SummaryConn.SelectQuery(@"SELECT SALES.DAY, SALES.TOTAL_SALES, SALES.CASH_SALES, SALES.CHARGE, SALES.CC, SALES.'CHECK', SALES.GC, SALES.COUPON, SALES.TAX_CERT, SALES.PO, 
+                                                                 EXPENSES.TOTAL_EXPENSES, EXPENSES.PCF, EXPENSES.WTX, EXPENSES.OTHERS,
+                                                                 DEPOSIT.CASH, DEPOSIT.'CHECK', DEPOSIT.ENC_CHECK,
+                                                                 PO_PAYMENTS.PAID_AMOUNT
+                                                                 FROM
+                                                                 (select date, strftime('%Y', date) AS YEAR, strftime('%m', date) AS MONTH,strftime('%d',date) as DAY, 
+                                                                    sum(total_sales) AS TOTAL_SALES, sum(cash) AS CASH_SALES, sum(charge) AS CHARGE, sum(credit_card)AS CC, 
+                                                                    sum('check') AS 'CHECK', sum(gift_check) AS GC, sum(coupon) AS COUPON, sum(tax_cert) AS TAX_CERT,
+                                                                    sum(po) AS PO, comments from sales group by DAY) SALES
+                                                                 LEFT JOIN  
+                                                                (select date, strftime('%Y', date) AS YEAR, strftime('%m', date) AS MONTH,strftime('%d',date) as DAY, 
+                                                                    sum(total_expenses) as TOTAL_EXPENSES, sum(pcf) as PCF, sum(wtx) as WTX, sum(others) as OTHERS
+                                                                    from expenses group by DAY) EXPENSES 
+                                                                ON SALES.DATE=EXPENSES.DATE
+                                                                LEFT JOIN
+                                                                (select date, strftime('%Y', date) AS YEAR, strftime('%m', date) AS MONTH, strftime('%d', date) AS DAY, 
+                                                                    sum(cash) AS CASH, sum('check') AS 'CHECK', sum(enc_check) AS ENC_CHECK from deposit_summary GROUP BY DAY) DEPOSIT
+                                                                ON SALES.DATE=DEPOSIT.DATE 
+                                                                LEFT JOIN 
+                                                                (select payment_date, strftime('%Y', payment_date) as YEAR, strftime('%m', payment_date) as MONTH, 
+                                                                    strftime('%d', payment_date) as DAY, sum(paid_amount) as PAID_AMOUNT
+                                                                    from PO_PAYMENTS group by DAY) PO_PAYMENTS
+                                                                ON SALES.DATE=PO_PAYMENTS.PAYMENT_DATE
+                                                                where SALES.YEAR='" + Su_DD_Year.Text + "' and case SALES.MONTH when '01' then 'JANUARY' when '02' then 'FEBRUARY' when '03' then 'MARCH' when '04' then 'APRIL' when '05' then 'MAY' when '06' then 'JUNE' when '07' then 'JULY' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END ='" + Su_DD_Month.Text + "' group by SALES.DAY");
                 if (SalesItems.Rows.Count < 1)
                 {
                     IsSuccess = false;
@@ -1927,7 +1964,54 @@ namespace Balanse
                             po = Decimal.Parse(row[9].ToString());
                         }
 
-                        string comments = row[10].ToString();
+
+                        decimal totalExp = 0;
+                        if (row[10]!=DBNull.Value)
+                        {
+                            totalExp = Decimal.Parse(row[10].ToString());
+                        }
+
+                        decimal pcf = 0;
+                        if (row[11] != DBNull.Value)
+                        {
+                            pcf = Decimal.Parse(row[11].ToString());
+                        }
+
+                        decimal wtx = 0;
+                        if (row[12] != DBNull.Value)
+                        {
+                            wtx = Decimal.Parse(row[12].ToString());
+                        }
+
+                        decimal others = 0;
+                        if (row[13] != DBNull.Value)
+                        {
+                            others = Decimal.Parse(row[13].ToString());
+                        }
+
+                        decimal cashdep = 0;
+                        if (row[14] != DBNull.Value)
+                        {
+                            cashdep = Decimal.Parse(row[14].ToString());
+                        }
+
+                        decimal checkdep = 0;
+                        if (row[15] != DBNull.Value)
+                        {
+                            checkdep = Decimal.Parse(row[15].ToString());
+                        }
+                        decimal encdep = 0;
+                        if (row[16] != DBNull.Value)
+                        {
+                            encdep = Decimal.Parse(row[16].ToString());
+                        }
+
+                        decimal podep = 0;
+                        if (row[17] != DBNull.Value)
+                        {
+                            podep = Decimal.Parse(row[17].ToString());
+                        }
+
                         Su_DGV_Sales.Rows.Add(
                         day,
                         total_sales.ToString("#,##0.00"),
@@ -1939,7 +2023,15 @@ namespace Balanse
                         coupon.ToString("#,##0.00"),
                         tax_cert.ToString("#,##0.00"),
                         po.ToString("#,##0.00"),
-                        comments);
+                        totalExp.ToString("#,##0.00"),
+                        pcf.ToString("#,##0.00"),
+                        wtx.ToString("#,##0.00"),
+                        others.ToString("#,##0.00"),
+                        cashdep.ToString("#,##0.00"),
+                        checkdep.ToString("#,##0.00"),
+                        encdep.ToString("#,##0.00"),
+                        podep.ToString("#,##0.00"));
+                        
 
                         Su_L_RepName.Text = Su_DD_Month.Text+ " " + Su_DD_Year.Text+ " SALES SUMMARY FOR ALL BRANCHES";
                     }
@@ -1949,7 +2041,29 @@ namespace Balanse
             else
             {
 
-                DataTable SalesItems = SummaryConn.SelectQuery(@"select strftime('%d',date), sum(total_sales), sum(cash), sum(charge), sum(credit_card), sum('check'), sum(gift_check), sum(coupon), sum(tax_cert),sum(po), comments from sales where strftime('%Y',date)='" + Su_DD_Year.Text + "' and case strftime('%m', date) when '01' then 'JANUARY' when '02' then 'FEBRUARY' when '03' then 'MARCH' when '04' then 'APRIL' when '05' then 'MAY' when '06' then 'JUNE' when '07' then 'JULY' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END ='" + Su_DD_Month.Text + "' and branch='" + Su_DD_Branch.Text + "' group by strftime('%d',date)");
+                DataTable SalesItems = SummaryConn.SelectQuery(@"SELECT SALES.DAY, SALES.TOTAL_SALES, SALES.CASH_SALES, SALES.CHARGE, SALES.CC, SALES.'CHECK', SALES.GC, SALES.COUPON, SALES.TAX_CERT, SALES.PO,
+                                                                 EXPENSES.TOTAL_EXPENSES, EXPENSES.PCF, EXPENSES.WTX, EXPENSES.OTHERS,
+                                                                 DEPOSIT.CASH, DEPOSIT.'CHECK', DEPOSIT.ENC_CHECK,
+                                                                 PO_PAYMENTS.PAID_AMOUNT
+                                                                 FROM
+                                                                 (select date, branch, strftime('%Y', date) AS YEAR, strftime('%m', date) AS MONTH,strftime('%d',date) as DAY, 
+                                                                    sum(total_sales) AS TOTAL_SALES, sum(cash) AS CASH_SALES, sum(charge) AS CHARGE, sum(credit_card)AS CC, 
+                                                                    sum('check') AS 'CHECK', sum(gift_check) AS GC, sum(coupon) AS COUPON, sum(tax_cert) AS TAX_CERT, sum(po) AS PO 
+                                                                    from sales group by DAY) SALES
+                                                                 LEFT JOIN
+                                                                 (select date, branch, strftime('%Y', date) AS YEAR, strftime('%m', date) AS MONTH,strftime('%d',date) as DAY, 
+                                                                    sum(total_expenses) as TOTAL_EXPENSES, sum(pcf) as PCF, sum(wtx) as WTX, sum(others) as OTHERS 
+                                                                    from expenses group by DAY) EXPENSES 
+                                                                 ON SALES.DATE=EXPENSES.DATE AND SALES.BRANCH=EXPENSES.BRANCH
+                                                                 LEFT JOIN
+                                                                 (select date, branch, strftime('%Y', date) AS YEAR, strftime('%m', date) AS MONTH, strftime('%d', date) AS DAY, 
+                                                                    sum(cash) AS CASH, sum('check') AS 'CHECK', sum(enc_check) AS ENC_CHECK from deposit_summary GROUP BY DAY) DEPOSIT
+                                                                 ON SALES.DATE=DEPOSIT.DATE AND SALES.BRANCH=DEPOSIT.BRANCH
+                                                                 LEFT JOIN 
+                                                                 (select payment_date, branch, strftime('%Y', payment_date) as YEAR, strftime('%m', payment_date) as MONTH, 
+                                                                    strftime('%d', payment_date) as DAY, sum(paid_amount) as PAID_AMOUNT from PO_PAYMENTS group by DAY) PO_PAYMENTS
+                                                                 ON SALES.DATE=PO_PAYMENTS.PAYMENT_DATE AND SALES.BRANCH=DEPOSIT.BRANCH
+                                                                 where SALES.YEAR='"+Su_DD_Year.Text+"' and case SALES.MONTH when '01' then 'JANUARY' when '02' then 'FEBRUARY' when '03' then 'MARCH' when '04' then 'APRIL' when '05' then 'MAY' when '06' then 'JUNE' when '07' then 'JULY' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END ='"+Su_DD_Month.Text+"' and SALES.BRANCH= '"+Su_DD_Branch.Text+"' group by SALES.DAY");
                 if (SalesItems.Rows.Count < 1)
                 {
                     IsSuccess = false;
@@ -1964,6 +2078,7 @@ namespace Balanse
                     {
 
                         string day = row[0].ToString();
+
                         decimal total_sales = Decimal.Parse(row[1].ToString());
 
                         decimal cash = 0;
@@ -2013,9 +2128,55 @@ namespace Balanse
                         {
                             po = Decimal.Parse(row[9].ToString());
                         }
-                        string comments = row[10].ToString();
 
-                        Su_L_RepName.Text = Su_DD_Month.Text + " " + Su_DD_Year.Text + " SALES SUMMARY FOR " + Su_DD_Branch.Text;
+
+                        decimal totalExp = 0;
+                        if (row[10] != DBNull.Value)
+                        {
+                            totalExp = Decimal.Parse(row[10].ToString());
+                        }
+
+                        decimal pcf = 0;
+                        if (row[11] != DBNull.Value)
+                        {
+                            pcf = Decimal.Parse(row[11].ToString());
+                        }
+
+                        decimal wtx = 0;
+                        if (row[12] != DBNull.Value)
+                        {
+                            wtx = Decimal.Parse(row[12].ToString());
+                        }
+
+                        decimal others = 0;
+                        if (row[13] != DBNull.Value)
+                        {
+                            others = Decimal.Parse(row[13].ToString());
+                        }
+
+                        decimal cashdep = 0;
+                        if (row[14] != DBNull.Value)
+                        {
+                            cashdep = Decimal.Parse(row[14].ToString());
+                        }
+
+                        decimal checkdep = 0;
+                        if (row[15] != DBNull.Value)
+                        {
+                            checkdep = Decimal.Parse(row[15].ToString());
+                        }
+                        decimal encdep = 0;
+                        if (row[16] != DBNull.Value)
+                        {
+                            encdep = Decimal.Parse(row[16].ToString());
+                        }
+
+                        decimal podep = 0;
+                        if (row[17] != DBNull.Value)
+                        {
+                            podep = Decimal.Parse(row[17].ToString());
+                        }
+
                         Su_DGV_Sales.Rows.Add(
                         day,
                         total_sales.ToString("#,##0.00"),
@@ -2027,7 +2188,14 @@ namespace Balanse
                         coupon.ToString("#,##0.00"),
                         tax_cert.ToString("#,##0.00"),
                         po.ToString("#,##0.00"),
-                        comments);
+                        totalExp.ToString("#,##0.00"),
+                        pcf.ToString("#,##0.00"),
+                        wtx.ToString("#,##0.00"),
+                        others.ToString("#,##0.00"),
+                        cashdep.ToString("#,##0.00"),
+                        checkdep.ToString("#,##0.00"),
+                        encdep.ToString("#,##0.00"),
+                        podep.ToString("#,##0.00"));
                     }
                 }
                 return IsSuccess;
@@ -2066,33 +2234,6 @@ namespace Balanse
         {
 
         }
-        public Boolean PopulateAnalysis()
-        {
-            select strftime('%d', s.date), 
-sum(s.total_sales), 
-sum(s.cash), 
-sum(s.'check'), 
-sum(e.pcf),
-sum(e.others),
-sum(e.wtx),
-sum(e.refund),
-sum(d.cash),
-sum(d.enc_check),
-sum(d.'check'),
-SUM(PP.PAID_AMOUNT)
-from sales s LEFT JOIN expenses e
-ON s.date = e.date
-and s.branch = e.branch
-SALES S LEFT JOIN DEPOSIT_SUMMARY D
-ON S.DATE = D.DATE
-AND S.BRANCH = D.BRANCH
-SALES S LEFT JOIN PO_PAYMENTS PP
-ON S.DATE = PP.PAYMENT_DATE
-AND S.BRANCH = PP.BRANCH
-WHERE
-strftime('%Y', s.date) = '2016'
-and case strftime('%m', s.date) when '01' then 'JANUARY' when '02' then 'FEBRUARY' when '03' then 'MARCH' when '04' then 'APRIL' when '05' then 'MAY' when '06' then 'JUNE' when '07' then 'JULY' when '08' then 'AUGUST' when '09' then 'SEPTEMBER' when '10' then 'OCTOBER' when '11' then 'NOVEMBER' when '12' then 'DECEMBER' else 'N/A' END = 'SEPTEMBER' group by strftime('%d', s.date)
-AND PP.DEPOSIT_TAG = 1
-        }
+            
     }
 }

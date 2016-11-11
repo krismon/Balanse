@@ -50,6 +50,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.POPay_TB_PODate = new System.Windows.Forms.TextBox();
             this.dgv_PoPayments = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddPayment = new System.Windows.Forms.Button();
@@ -58,10 +62,6 @@
             this.txtTotalPayments = new System.Windows.Forms.TextBox();
             this.txtBalance = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_PoPayments)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -269,7 +269,8 @@
             this.POPay_DD_PayType.FormattingEnabled = true;
             this.POPay_DD_PayType.Items.AddRange(new object[] {
             "Cash",
-            "Check"});
+            "Check",
+            "Turned Over"});
             this.POPay_DD_PayType.Location = new System.Drawing.Point(146, 32);
             this.POPay_DD_PayType.Margin = new System.Windows.Forms.Padding(2);
             this.POPay_DD_PayType.Name = "POPay_DD_PayType";
@@ -315,6 +316,32 @@
             this.dgv_PoPayments.Size = new System.Drawing.Size(547, 142);
             this.dgv_PoPayments.TabIndex = 25;
             this.dgv_PoPayments.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_PoPayments_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Payment Type";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Paid Amount";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Payment Date";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Action";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Text = "REMOVE";
+            this.Column4.UseColumnTextForButtonValue = true;
             // 
             // label9
             // 
@@ -413,32 +440,6 @@
             this.label12.Size = new System.Drawing.Size(85, 24);
             this.label12.TabIndex = 31;
             this.label12.Text = "Balance";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Payment Type";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Paid Amount";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Payment Date";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Action";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Text = "REMOVE";
-            this.Column4.UseColumnTextForButtonValue = true;
             // 
             // PO_Payment_Subform
             // 
