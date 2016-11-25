@@ -94,6 +94,24 @@
     <Compile Include="SQLiteColumnList.cs" />
     <Compile Include="SQLiteHelper.cs" />
     <Compile Include="SQLiteTable.cs" />
+    <Compile Include="VED Subform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VED Subform.Designer.cs">
+      <DependentUpon>VED Subform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VEE Subform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VEE Subform.Designer.cs">
+      <DependentUpon>VEE Subform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VES Subform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VES Subform.Designer.cs">
+      <DependentUpon>VES Subform.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Balanse.resx">
       <DependentUpon>Balanse.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +130,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="VED Subform.resx">
+      <DependentUpon>VED Subform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VEE Subform.resx">
+      <DependentUpon>VEE Subform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VES Subform.resx">
+      <DependentUpon>VES Subform.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

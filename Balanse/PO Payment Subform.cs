@@ -79,14 +79,15 @@ namespace Balanse
         public void RetrievePayments(int inv_no)
         {
             BalanseConn conn = new BalanseConn();
-            string QueryString = "SELECT PAYMENT_TYPE, PAID_AMOUNT, PAYMENT_DATE FROM PO_PAYMENTS WHERE INVOICE_NO =" + inv_no + ";";
+            string QueryString = "SELECT PAYMENT_TYPE, PAID_AMOUNT, PAYMENT_DATE, (CASE DEPOSIT_TAG WHEN 0 THEN 'No' WHEN 1 THEN 'Yes' END) AS DEPOSIT_TAG FROM PO_PAYMENTS WHERE INVOICE_NO =" + inv_no + ";";
             DataTable dt = conn.SelectQuery(QueryString);
             foreach (DataRow row in dt.Rows)
             {
                 dgv_PoPayments.Rows.Add(
                 row[0].ToString(),
                 Decimal.Parse(row[1].ToString()).ToString("#,##0.00"),
-                DateTime.Parse(row[2].ToString()).ToString("MM/dd/yyyy")
+                DateTime.Parse(row[2].ToString()).ToString("MM/dd/yyyy"),
+                row[3].ToString()            
                 );
             }
              
@@ -95,14 +96,26 @@ namespace Balanse
 
         private void btnAddPayment_Click(object sender, EventArgs e)
         {
-            if (!IsEmpty(POPay_DD_PayType.Text) && (!IsEmpty(POPay_TB_PayAmt.Text)))
+            if (!IsEmpty(POPay_DD_PayType.Text) && !IsEmpty(POPay_TB_PayAmt.Text))
             {
-                dgv_PoPayments.Rows.Add(POPay_DD_PayType.Text, POPay_TB_PayAmt.Text, POPay_But_PayDate.Text);
-                POPay_DD_PayType.Text = "";
-                POPay_TB_PayAmt.Text = "";
-                POPay_CB_Deposit.Checked= false;
-                POPay_But_PayDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
-                RecalculatePaymentTotals();
+                if (POPay_CB_Deposit.Checked == true)
+                {
+                    dgv_PoPayments.Rows.Add(POPay_DD_PayType.Text, POPay_TB_PayAmt.Text, POPay_But_PayDate.Text, "Yes");
+                    POPay_DD_PayType.Text = "";
+                    POPay_TB_PayAmt.Text = "";
+                    POPay_CB_Deposit.Checked = false;
+                    POPay_But_PayDate.Value = DateTime.Now;
+                    RecalculatePaymentTotals();
+                }
+                if (POPay_CB_Deposit.Checked == false)
+                {
+                    dgv_PoPayments.Rows.Add(POPay_DD_PayType.Text, POPay_TB_PayAmt.Text, POPay_But_PayDate.Text, "No");
+                    POPay_DD_PayType.Text = "";
+                    POPay_TB_PayAmt.Text = "";
+                    POPay_CB_Deposit.Checked = false;
+                    POPay_But_PayDate.Value = DateTime.Now;
+                    RecalculatePaymentTotals();
+                }
             }
             else
             {
@@ -120,7 +133,7 @@ namespace Balanse
 
             foreach (DataGridViewRow row in dgv_PoPayments.Rows)
             {
-                if (POPay_CB_Deposit.Checked)
+                if (row.Cells[3].Value.ToString()=="Yes")
                 {
                     outputrowid += conn.InsertPO_Payment(
                        DateTime.ParseExact(POPay_TB_PODate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture),

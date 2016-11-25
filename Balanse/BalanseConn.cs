@@ -108,13 +108,14 @@ namespace Balanse
             InsertSalesParameters.Add("COUPON", Coupon);
             InsertSalesParameters.Add("TAX_CERT", TaxCert);
             InsertSalesParameters.Add("PO", PO);
+            InsertSalesParameters.Add("COMMENTS", Comments);
             InsertSalesParameters.Add("REC_DT", RecDt);
             InsertSalesParameters.Add("ENCODED_BY", EncodedBy);
             int SalesId = InsertQuery("SALES", InsertSalesParameters);
             return SalesId;
         }
 
-        public int InsertPO(int SalesId, DateTime PODate, string Branch, string POName, double POAmt, string POStatus, DateTime PORecDate, string POEncodedBy, string InvoiceNo, DateTime UpdateDate)
+        public int InsertPO(int SalesId, DateTime PODate, string Branch, string POName, double POAmt, string POStatus, DateTime PORecDate, string POEncodedBy, int InvoiceNo, DateTime UpdateDate)
         {
             Dictionary<string, object> InsertPOParameters = new Dictionary<string, object>();
             InsertPOParameters.Add("SALES_ID", SalesId);
@@ -143,10 +144,10 @@ namespace Balanse
             InsertExpenseParameters.Add("WTX", Wtx);
             InsertExpenseParameters.Add("REFUND", Refund);
             InsertExpenseParameters.Add("OTHERS", Others);
-            InsertExpenseParameters.Add("OTH_1", Others);
-            InsertExpenseParameters.Add("OTH_2", Others);
-            InsertExpenseParameters.Add("OTH_3", Others);
-            InsertExpenseParameters.Add("OTH_4", Others);
+            InsertExpenseParameters.Add("OTH_1", Others1);
+            InsertExpenseParameters.Add("OTH_2", Others2);
+            InsertExpenseParameters.Add("OTH_3", Others3);
+            InsertExpenseParameters.Add("OTH_4", Others4);
             InsertExpenseParameters.Add("COMMENTS", Comments);
             InsertExpenseParameters.Add("TOTAL_EXPENSES", TotalExp);
             InsertExpenseParameters.Add("REC_DT", Recdt);
@@ -166,6 +167,35 @@ namespace Balanse
             InsertDepositParameters.Add("ENCODED_BY", EncodedBy);
             InsertDepositParameters.Add("PO_TAG", POTag);
             int DepositID = InsertQuery("DEPOSIT", InsertDepositParameters);
+            return DepositID;
+        }
+
+        public int InsertDeposits( DateTime Date, string Branch, double Cash, double Cash1, double Cash2, double Cash3, double Cash4, double enc, double enc1, double enc2, double enc3, double enc4, double check, double check1, double check2, double check3, double check4,  double total_dep, string comments, DateTime RecDt, string EncodedBy, int POTag)
+        {
+            Dictionary<string, object> InsertDepositParameters = new Dictionary<string, object>();
+            InsertDepositParameters.Add("DATE", Date);
+            InsertDepositParameters.Add("BRANCH", Branch);
+            InsertDepositParameters.Add("CASH", Cash);
+            InsertDepositParameters.Add("CASH1", Cash1);
+            InsertDepositParameters.Add("CASH2", Cash2);
+            InsertDepositParameters.Add("CASH3", Cash3);
+            InsertDepositParameters.Add("CASH4", Cash4);
+            InsertDepositParameters.Add("ENC_CHECK", enc);
+            InsertDepositParameters.Add("ENC_CHECK1", enc1);
+            InsertDepositParameters.Add("ENC_CHECK2", enc2);
+            InsertDepositParameters.Add("ENC_CHECK3", enc3);
+            InsertDepositParameters.Add("ENC_CHECK4", enc4);
+            InsertDepositParameters.Add("CHECK", check);
+            InsertDepositParameters.Add("CHECK1", check1);
+            InsertDepositParameters.Add("CHECK2", check2);
+            InsertDepositParameters.Add("CHECK3", check3);
+            InsertDepositParameters.Add("CHECK4", check4);
+            InsertDepositParameters.Add("TOTAL_DEPOSIT", total_dep);
+            InsertDepositParameters.Add("COMMENTS", comments);
+            InsertDepositParameters.Add("REC_DT", RecDt);
+            InsertDepositParameters.Add("ENCODED_BY", EncodedBy);
+            InsertDepositParameters.Add("PO_TAG", POTag);
+            int DepositID = InsertQuery("DEPOSITS", InsertDepositParameters);
             return DepositID;
         }
         public int InsertDepositSummary(DateTime Date, string Branch, double Cash, double EncCheck, double Check, double TotalDep, string Comments, DateTime RecDt, string EncodedBy, int POTag)
@@ -228,6 +258,56 @@ namespace Balanse
                     conn.Open();
                     SQLiteHelper sh = new SQLiteHelper(cmd);
                     sh.Execute("UPDATE PURCHASE_ORDERS" + " SET PO_STATUS = '" + po_status + "' , UPDATE_DATE= '"+update_date+ "' WHERE INVOICE_NO = '" + inv_no + "';");
+                    conn.Close();
+
+                }
+            }
+        }
+        public void DropSales(int rowid)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection("data source=C:\\BalanseData\\Balanse"))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+                    sh.Execute("Delete from SALES" + " WHERE rowid = '" + rowid + "';");
+                    sh.Execute("Delete from PURCHASE_ORDERS" + " WHERE sales_id='" + rowid + "';");
+                    
+                    conn.Close();
+
+                }
+            }           
+        }
+        public void DropExpenses(int rowid)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection("data source=C:\\BalanseData\\Balanse"))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+                    sh.Execute("Delete from EXPENSES" + " WHERE rowid = '" + rowid + "';");
+                    conn.Close();
+
+                }
+            }
+        }
+            public void DropDeposits(int rowid)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection("data source=C:\\BalanseData\\Balanse"))
+            {
+                using (SQLiteCommand cmd = new SQLiteCommand())
+                {
+                    cmd.Connection = conn;
+                    conn.Open();
+
+                    SQLiteHelper sh = new SQLiteHelper(cmd);
+                    sh.Execute("Delete from DEPOSITS" + " WHERE rowid = '" + rowid + "';");
                     conn.Close();
 
                 }
